@@ -8,6 +8,7 @@ website:
       - text: "Hands-on Exercises"
         menu:
           - text: "Exercise 1"
+            href: "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html"
     right:
       - href: index.qmd
         text: Home

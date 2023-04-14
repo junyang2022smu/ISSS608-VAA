@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ISSS608-VAA",
+    "title": "ISSS608 Visual Analytics & Applications",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "This is a student website for ISSS608 exercise submissions."
   },
   {
     "objectID": "about.html",
@@ -54,5 +54,12 @@
     "title": "Hands-On Exercise 1",
     "section": "Coordinates",
     "text": "Coordinates\n\nFlipping vertical bar chart to horizontal\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\n\n\nChanging axis ranges\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm,\n              size=0.5) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#themes",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#themes",
+    "title": "Hands-On Exercise 1",
+    "section": "Themes",
+    "text": "Themes\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_minimal()"
   }
 ]
