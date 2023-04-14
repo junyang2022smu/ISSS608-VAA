@@ -1,0 +1,191 @@
+---
+title: "Hands-On Exercise 1"
+author: "Yang Jun"
+---
+
+## Getting Started
+
+### Install and Load R Packages
+
+The code chunk below uses `p_load()` of `pacman` package to check if `tidyverse` packages are installed in the computer. If they are, they will be loaded into R.
+
+```{r}
+pacman::p_load(tidyverse)
+```
+
+### Import the Data
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+## Plotting Charts
+
+### Bar Chart
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=RACE)) +
+  geom_bar()
+```
+
+### Dot Plot
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_dotplot(binwidth=2.5,
+               dotsize=0.5) +
+  scale_y_continuous(NULL,
+                     breaks=NULL)
+```
+
+### Histogram 1
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_histogram(bins=20,
+                 color='black',
+                 fill='light blue')
+```
+
+### Histogram 2
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+           fill=GENDER)) +
+  geom_histogram(bins=20,
+                 color='white')
+```
+
+### Kernel Density Estimate
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x=MATHS,
+           colour=GENDER)) +
+  geom_density()
+```
+
+### Boxplot
+
+```{r}
+ggplot(data=exam_data,
+       aes(y=MATHS,
+           x=GENDER)) +
+  geom_boxplot(notch=TRUE)
+```
+
+### Violin Plot
+
+Useful to compare several distributions.
+
+```{r}
+ggplot(data=exam_data,
+       aes(y=MATHS,
+           x=GENDER)) +
+  geom_violin()
+```
+
+### Scatterplot
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+           y=ENGLISH)) +
+  geom_point()
+```
+
+### Combining Geom Types
+
+```{r}
+ggplot(data=exam_data,
+       aes(y=MATHS,
+           x=GENDER)) +
+  geom_boxplot() +
+  geom_point(position='jitter',
+             size=0.5)
+```
+
+## Adding Statistics
+
+### Adding mean to boxplot
+
+```{r}
+ggplot(data=exam_data,
+       aes(y=MATHS,
+           x=GENDER)) +
+  geom_boxplot() +
+  stat_summary(geom='point',
+               fun='mean',
+               colour='red',
+               size=4)
+```
+
+### Adding best fit curve to scatterplot
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+       y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm,
+              size=0.5)
+```
+
+## Facets
+
+### Facet Wrap
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_histogram(bins=20) +
+  facet_wrap(~CLASS)
+```
+
+### Facet Grid
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+           y=ENGLISH)) +
+  geom_point() +
+  facet_grid(~CLASS)
+```
+
+## Coordinates
+
+### Flipping vertical bar chart to horizontal
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=RACE)) +
+  geom_bar() +
+  coord_flip()
+```
+
+### Changing axis ranges
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm,
+              size=0.5) +
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100))
+```
+
+## Themes
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=RACE)) +
+  geom_bar() +
+  coord_flip() +
+  theme_minimal()
+```

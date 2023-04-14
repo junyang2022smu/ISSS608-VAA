@@ -12,5 +12,47 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html",
+    "title": "Hands-On Exercise 1",
+    "section": "",
+    "text": "The code chunk below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, they will be loaded into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-a-simple-bar-chart",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-a-simple-bar-chart",
+    "title": "Hands-On Exercise 1",
+    "section": "Plotting a simple Bar Chart",
+    "text": "Plotting a simple Bar Chart\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-charts",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-charts",
+    "title": "Hands-On Exercise 1",
+    "section": "Plotting Charts",
+    "text": "Plotting Charts\n\nBar Chart\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar()\n\n\n\n\n\n\nDot Plot\n\nggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_dotplot(binwidth=2.5,\n               dotsize=0.5) +\n  scale_y_continuous(NULL,\n                     breaks=NULL)\n\n\n\n\n\n\nHistogram 1\n\nggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20,\n                 color='black',\n                 fill='light blue')\n\n\n\n\n\n\nHistogram 2\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           fill=GENDER)) +\n  geom_histogram(bins=20,\n                 color='white')\n\n\n\n\n\n\nKernel Density Estimate\n\nggplot(data=exam_data, \n       aes(x=MATHS,\n           colour=GENDER)) +\n  geom_density()\n\n\n\n\n\n\nBoxplot\n\nggplot(data=exam_data,\n       aes(y=MATHS,\n           x=GENDER)) +\n  geom_boxplot(notch=TRUE)\n\n\n\n\n\n\nViolin Plot\nUseful to compare several distributions.\n\nggplot(data=exam_data,\n       aes(y=MATHS,\n           x=GENDER)) +\n  geom_violin()\n\n\n\n\n\n\nScatterplot\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point()\n\n\n\n\n\n\nCombining Geom Types\n\nggplot(data=exam_data,\n       aes(y=MATHS,\n           x=GENDER)) +\n  geom_boxplot() +\n  geom_point(position='jitter',\n             size=0.5)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#adding-statistics",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#adding-statistics",
+    "title": "Hands-On Exercise 1",
+    "section": "Adding Statistics",
+    "text": "Adding Statistics\n\nAdding mean to boxplot\n\nggplot(data=exam_data,\n       aes(y=MATHS,\n           x=GENDER)) +\n  geom_boxplot() +\n  stat_summary(geom='point',\n               fun='mean',\n               colour='red',\n               size=4)\n\n\n\n\n\n\nAdding best fit curve to scatterplot\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n       y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm,\n              size=0.5)\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#facets",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#facets",
+    "title": "Hands-On Exercise 1",
+    "section": "Facets",
+    "text": "Facets\n\nFacet Wrap\n\nggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20) +\n  facet_wrap(~CLASS)\n\n\n\n\n\n\nFacet Grid\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point() +\n  facet_grid(~CLASS)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#coordinates",
+    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#coordinates",
+    "title": "Hands-On Exercise 1",
+    "section": "Coordinates",
+    "text": "Coordinates\n\nFlipping vertical bar chart to horizontal\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\n\n\nChanging axis ranges\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm,\n              size=0.5) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\n`geom_smooth()` using formula 'y ~ x'"
   }
 ]

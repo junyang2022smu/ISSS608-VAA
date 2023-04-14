@@ -4,5 +4,8 @@
   },
   "about.qmd": {
     "about.html": "cc7f23e5"
+  },
+  "hands_on_ex/hands_on_ex_01/hands_on_ex_01.qmd": {
+    "hands_on_ex_01.html": "8df61b5f"
   }
 }
