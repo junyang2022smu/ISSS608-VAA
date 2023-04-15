@@ -5,10 +5,14 @@ website:
   title: "ISSS608-VAA"
   navbar:
     left:
-      - text: "Hands-on Exercises"
+      - text: "Hands-On Exercises"
         menu:
           - text: "Exercise 1"
             href: "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html"
+      - text: "In-Class Exercises"
+        menu:
+          - text: "Exercise 1: Programming Elegant DataVis with ggplot2"
+            href: "in_class_ex/in_class_ex_01/in_class_ex_01.html"
     right:
       - href: index.qmd
         text: Home

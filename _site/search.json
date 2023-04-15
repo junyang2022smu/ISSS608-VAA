@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ISSS608 Visual Analytics & Applications",
-    "section": "",
-    "text": "This is a student website for ISSS608 exercise submissions."
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -19,13 +12,6 @@
     "title": "Hands-On Exercise 1",
     "section": "",
     "text": "The code chunk below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, they will be loaded into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
-  },
-  {
-    "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-a-simple-bar-chart",
-    "href": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-a-simple-bar-chart",
-    "title": "Hands-On Exercise 1",
-    "section": "Plotting a simple Bar Chart",
-    "text": "Plotting a simple Bar Chart\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar()"
   },
   {
     "objectID": "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html#plotting-charts",
@@ -61,5 +47,33 @@
     "title": "Hands-On Exercise 1",
     "section": "Themes",
     "text": "Themes\n\nggplot(data=exam_data,\n       aes(x=RACE)) +\n  geom_bar() +\n  coord_flip() +\n  theme_minimal()"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ISSS608 Visual Analytics & Applications",
+    "section": "",
+    "text": "This is a student website for ISSS608 exercise submissions."
+  },
+  {
+    "objectID": "in_class_ex/in_class_ex_01/in_class_ex_01.html",
+    "href": "in_class_ex/in_class_ex_01/in_class_ex_01.html",
+    "title": "In-Class Exercise 1",
+    "section": "",
+    "text": "pacman::p_load(tidyverse)\n\n\n\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\n\n\nChanging the colors of plot panel background of theme_minimal() to light blue and the color of grid lines to white.\n\nggplot(exam_data,\n       aes(y=RACE)) +\n  geom_bar() +\n  theme_minimal() + \n  theme(panel.background = element_rect(fill='lightblue', colour='lightblue'),\n        panel.grid.major = element_line(color='white'))"
+  },
+  {
+    "objectID": "in_class_ex/in_class_ex_01/in_class_ex_01.html#working-with-themes",
+    "href": "in_class_ex/in_class_ex_01/in_class_ex_01.html#working-with-themes",
+    "title": "In-Class Exercise 1",
+    "section": "Working with Themes",
+    "text": "Working with Themes\n\nggplot(exam_data,\n       aes(y=RACE)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "in_class_ex/in_class_ex_01/in_class_ex_01.html#designing-data-driven-graphics-for-analysis",
+    "href": "in_class_ex/in_class_ex_01/in_class_ex_01.html#designing-data-driven-graphics-for-analysis",
+    "title": "In-Class Exercise 1",
+    "section": "Designing Data-Driven Graphics for Analysis",
+    "text": "Designing Data-Driven Graphics for Analysis\n\nI. Bar Chart Makeover\n\nBefore\ny-axis labels is not clear. Bars are not sorted. Frequency values not available.\n\nggplot(exam_data,\n       aes(x=RACE)) +\n  geom_bar()\n\n\n\n\n\n\nAfter\nThe y-axis has a clearer label, the bars are sorted by frequency in descending order, and frequency and percentage labels are provided for each bar.\n\nggplot(exam_data,\n       aes(x=fct_infreq(RACE))) +\n  geom_bar() +\n  geom_text(aes(label=paste0(after_stat(count), sprintf(' (%.1f%%)', prop*100)), group=1), \n            stat='count', \n            vjust=-0.5, \n            colour='black') +\n  labs(x='Race', y='No. of Pupils') +\n  scale_y_continuous(limits=c(0,220))\n\n\n\n\n\n\n\nII. Histogram Makeover\n\nBefore\nFill and line colours make it difficult to see the individual bins. No mean or median reference lines.\n\nggplot(exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20)\n\n\n\n\n\n\nAfter\nChanged fill and line colours. Added mean and median reference lines (red and black respectively).\n\nggplot(exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20,\n                 color='black',\n                 fill='light blue') +\n  geom_vline(xintercept=mean(exam_data$MATHS), color='red', linetype='dashed', size=1) +\n  geom_vline(xintercept=median(exam_data$MATHS), color='black', linetype='dashed', size=1)\n\n\n\n\n\n\n\nIII. Histogram Makeover 2\n\nBefore\nHistograms show distribution of English scores by gender, but without context of all pupils.\n\nggplot(exam_data,\n       aes(x=ENGLISH)) +\n  geom_histogram(bins=25) +\n  facet_wrap(~GENDER)\n\n\n\n\n\n\nAfter\nThe histogram of all pupils is added as a light background to provide context of how each gender scores compared to the overall performance.\n\nexam_data_bg <- exam_data[5]\n\nggplot(exam_data,\n       aes(x=ENGLISH, fill=GENDER)) +\n  geom_histogram(data=exam_data_bg, fill='grey', alpha=0.5) +\n  geom_histogram(colour='black') +\n  facet_wrap(~GENDER) +\n  guides(fill='none') +\n  theme_bw()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nIV. Scatterplot Makeover\n\nBefore\nScatterplot of English vs Maths scores. The axis have different scales even though they have the same units, and there are no reference marks indicating the (passing) score of 50%.\n\nggplot(exam_data,\n       aes(x=MATHS, y=ENGLISH)) +\n  geom_point()\n\n\n\n\n\n\nAfter\nBoth axes are standardised to the same scale. Reference lines are added to indicate scores of 50%.\n\nggplot(exam_data,\n       aes(x=MATHS, y=ENGLISH)) +\n  geom_vline(xintercept=50, color='grey70', linetype='dashed', size=1) +\n  geom_hline(yintercept=50, color='grey70', linetype='dashed', size=1) +\n  geom_point() +\n  coord_fixed(xlim=c(0,100),ylim=c(0,100))"
   }
 ]
