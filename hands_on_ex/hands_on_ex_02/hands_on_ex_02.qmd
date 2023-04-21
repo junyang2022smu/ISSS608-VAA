@@ -1,0 +1,156 @@
+---
+title: "Hands-On Exercise 2"
+author: "Yang Jun"
+---
+
+## Getting Started
+
+### Install and Load Required Packages
+
+The code chunk below will be used to check if these packages have been installed and also will load them onto your working R environment:
+
+```{r}
+pacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse) 
+```
+
+### Import the Data
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+## Annotations without overlapping labels
+
+### Annotation using default ggplot `geom_label()`
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm,
+              linewidth=0.5) +
+  geom_label(aes(label=ID)) +
+  coord_cartesian(xlim=c(0,100),ylim=c(0,100)) +
+  ggtitle("English scores vs Maths scores for Primary 3 students")
+```
+
+### Annotation using ggrepel `geom_text_repel()`
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS,
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm,
+              linewidth=0.5) +
+  geom_label_repel(aes(label=ID)) +
+  coord_cartesian(xlim=c(0,100),ylim=c(0,100)) +
+  ggtitle("English scores vs Maths scores for Primary 3 students")
+```
+
+## Beyond ggplot2 Themes
+
+### Using default ggplot2 `theme_gray` theme
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_histogram(bins=20,
+                 color='grey75') +
+  theme_gray() +
+  ggtitle("Distribution of Maths scores")
+```
+
+### Using 'Economist' theme from `ggthemes`
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_histogram(bins=20,
+                 color='grey75') +
+  theme_economist() +
+  ggtitle("Distribution of Maths scores")
+```
+
+### Using `hrbrthemes` package
+
+```{r}
+ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_histogram(bins=20,
+                 color='grey75') +
+  theme_ipsum() +
+  ggtitle("Distribution of Maths scores")
+```
+
+## Plotting Multiple Graphs using `patchwork`
+
+### Initial Graphs
+
+```{r}
+p1 <- ggplot(data=exam_data,
+       aes(x=MATHS)) +
+  geom_histogram(binwidth=5,
+                 boundary=100,
+                 color='grey75') +
+  coord_cartesian(xlim=c(0,100)) +
+  ggtitle("Distribution of Maths scores")
+
+p1
+```
+
+```{r}
+p2 <- ggplot(data=exam_data,
+       aes(x=ENGLISH)) +
+  geom_histogram(binwidth=5,
+                 boundary=100,
+                 color='grey75') +
+  coord_cartesian(xlim=c(0,100)) +
+  ggtitle("Distribution of English scores")
+
+p2
+```
+
+```{r}
+p3 <- ggplot(data=exam_data,
+       aes(x=MATHS,
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm,
+              linewidth=0.5) +
+  coord_cartesian(xlim=c(0,100),ylim=c(0,100)) +
+  ggtitle("English scores vs Maths scores for Primary 3 students")
+
+p3
+```
+
+### Two Graphs
+
+```{r}
+p1 + p2
+```
+
+### Three Graphs
+
+```{r}
+(p1 / p2) | p3 +
+  plot_annotation(tag_levels='I')
+```
+
+### Inset another graph
+
+```{r}
+p3 + inset_element(p2, 
+                   left = 0.02, 
+                   bottom = 0.7, 
+                   right = 0.5, 
+                   top = 1)
+```
+
+### Combining with themes
+
+```{r}
+patchwork <- (p1 / p2) | p3
+patchwork & theme_economist()
+```
