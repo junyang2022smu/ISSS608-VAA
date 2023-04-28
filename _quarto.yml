@@ -7,10 +7,12 @@ website:
     left:
       - text: "Hands-On Exercises"
         menu:
-          - text: "Exercise 1"
+          - text: "Exercise 1: Basics"
             href: "hands_on_ex/hands_on_ex_01/hands_on_ex_01.html"
-          - text: "Exercise 2"
+          - text: "Exercise 2: Annotations, Themes, Multiple Graphs"
             href: "hands_on_ex/hands_on_ex_02/hands_on_ex_02.html"
+          - text: "Exercise 3: Interactivity and Animations"
+            href: "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html"
       - text: "In-Class Exercises"
         menu:
           - text: "Exercise 1: Programming Elegant DataVis with ggplot2"
