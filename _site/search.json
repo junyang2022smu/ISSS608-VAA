@@ -117,5 +117,96 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html",
+    "title": "Hands-On Exercise 3",
+    "section": "",
+    "text": "In this Hands-On Exercise, we explore how to add interactive elements and animations to visualisations using appropriate R packages."
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#getting-started",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#getting-started",
+    "title": "Hands-On Exercise 3",
+    "section": "Getting Started",
+    "text": "Getting Started\n\nInstall and Load Required Packages\nThe code chunk below will be used to check if these packages have been installed and also will load them onto your working R environment:\n\npacman::p_load(ggiraph, plotly, patchwork, DT, tidyverse) \n\n\n\nImport the Data\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#annotations-without-overlapping-labels",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#annotations-without-overlapping-labels",
+    "title": "Hands-On Exercise 3",
+    "section": "Annotations without overlapping labels",
+    "text": "Annotations without overlapping labels\n\nAnnotation using default ggplot geom_label()\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm,\n              linewidth=0.5) +\n  geom_label(aes(label=ID)) +\n  coord_cartesian(xlim=c(0,100),ylim=c(0,100)) +\n  ggtitle(\"English scores vs Maths scores for Primary 3 students\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nAnnotation using ggrepel geom_text_repel()\n\nggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm,\n              linewidth=0.5) +\n  geom_label_repel(aes(label=ID)) +\n  coord_cartesian(xlim=c(0,100),ylim=c(0,100)) +\n  ggtitle(\"English scores vs Maths scores for Primary 3 students\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: ggrepel: 317 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#beyond-ggplot2-themes",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#beyond-ggplot2-themes",
+    "title": "Hands-On Exercise 3",
+    "section": "Beyond ggplot2 Themes",
+    "text": "Beyond ggplot2 Themes\n\nUsing default ggplot2 theme_gray theme\n\nggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20,\n                 color='grey75') +\n  theme_gray() +\n  ggtitle(\"Distribution of Maths scores\")\n\n\n\n\n\n\nUsing ‘Economist’ theme from ggthemes\n\nggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20,\n                 color='grey75') +\n  theme_economist() +\n  ggtitle(\"Distribution of Maths scores\")\n\n\n\n\n\n\nUsing hrbrthemes package\n\nggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(bins=20,\n                 color='grey75') +\n  theme_ipsum() +\n  ggtitle(\"Distribution of Maths scores\")"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#plotting-multiple-graphs-using-patchwork",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#plotting-multiple-graphs-using-patchwork",
+    "title": "Hands-On Exercise 3",
+    "section": "Plotting Multiple Graphs using patchwork",
+    "text": "Plotting Multiple Graphs using patchwork\n\nInitial Graphs\n\np1 &lt;- ggplot(data=exam_data,\n       aes(x=MATHS)) +\n  geom_histogram(binwidth=5,\n                 boundary=100,\n                 color='grey75') +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\n\np1\n\n\n\n\n\np2 &lt;- ggplot(data=exam_data,\n       aes(x=ENGLISH)) +\n  geom_histogram(binwidth=5,\n                 boundary=100,\n                 color='grey75') +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of English scores\")\n\np2\n\n\n\n\n\np3 &lt;- ggplot(data=exam_data,\n       aes(x=MATHS,\n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm,\n              linewidth=0.5) +\n  coord_cartesian(xlim=c(0,100),ylim=c(0,100)) +\n  ggtitle(\"English scores vs Maths scores for Primary 3 students\")\n\np3\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nTwo Graphs\n\np1 + p2\n\n\n\n\n\n\nThree Graphs\n\n(p1 / p2) | p3 +\n  plot_annotation(tag_levels='I')\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nInset another graph\n\np3 + inset_element(p2, \n                   left = 0.02, \n                   bottom = 0.7, \n                   right = 0.5, \n                   top = 1)\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nCombining with themes\n\npatchwork &lt;- (p1 / p2) | p3\npatchwork & theme_economist()\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#ggigraph-methods",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#ggigraph-methods",
+    "title": "Hands-On Exercise 3",
+    "section": "ggigraph Methods",
+    "text": "ggigraph Methods\n\nTooltips\nThe following code generates an interactive version of a dotplot, and displays the ID value (student ID) when the cursor hovers over a given dot.\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip=ID),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot'\n  ) +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)\n\n\n\n\n\nThe following code shows how the tooltip content can be customised:\n\nexam_data$tooltip &lt;- c(paste0(\n  \"Name = \", exam_data$ID,\n  \"\\n\",\n  \"Class = \", exam_data$CLASS\n))\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip=tooltip),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot'\n  ) +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(\n  ggobj = p,\n  width_svg = 8,\n  height_svg = 8*0.618\n)\n\n\n\n\n\nTooltips can be formatted using CSS, like so:\n\ntooltip_css &lt;- \"background-color:white; font-style:bold; color: black\"\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip=ID),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot'\n  ) +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618,\n  options = list(opts_tooltip(css = tooltip_css))\n)\n\n\n\n\n\nTooltips can even be customised using a function, for example to show computed statistics:\n\ntooltip &lt;- function(y, ymax, accuracy=0.01) {\n  mean &lt;- scales::number(y, accuracy = accuracy)\n  sem &lt;- scales::number(ymax - y, accuracy = accuracy)\n  paste(\"Mean maths scores:\", mean, \"+/-\", sem)\n}\n\ngg_point &lt;- ggplot(data=exam_data,\n                   aes(x=RACE)) +\n  stat_summary(aes(y=MATHS,\n                   tooltip = after_stat(tooltip(y,ymax))),\n               fun.data = 'mean_se',\n               geom = GeomInteractiveCol,\n               fill = 'light blue'\n               ) +\n  stat_summary(aes(y=MATHS),\n               fun.data = mean_se,\n               geom = 'errorbar', width = 0.2, size = 0.2\n    \n  )\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\ngirafe(ggobj = gg_point,\n       width_svg = 8,\n       height_svg = 8*0.618)\n\n\n\n\n\n\n\nHover effect (using data_id)\nHere, when we hover over a data point, all other points with the same CLASS value (i.e. classmates) will be highlighted as well.\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(data_id = CLASS),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot') +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)\n\n\n\n\n\nBy default, the highlighted dots are shown in orange. This can be changed using CSS:\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(data_id = CLASS),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot') +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618,\n  options = list(\n    opts_hover(css = \"fill:#202020;\"),\n    opts_hover_inv(css = \"opacity:0.2;\")\n  )\n)\n\n\n\n\n\n\n\nCombining tooltips and hover effect\nTooltips and hover effect can be combined, so that when we mouse over a data point, all the data points of the same class will be highlighted, and at the same time the name of the class will also be shown:\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip = CLASS,\n        data_id = CLASS),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot'\n  ) +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618,\n  options = list(\n    opts_hover(css = \"fill:#202020;\"),\n    opts_hover_inv(css = \"opacity:0.2;\")\n  )\n)\n\n\n\n\n\n\n\nCoordinated multiple views\nBy combining ggiraph and patchwork, we can create coordinated graphs such that when a data point in the first graph is selected, the corresponding data point in the second graph will also be highlighted.\n\np1 &lt;- ggplot(data=exam_data,\n             aes(x=MATHS)) +\n  geom_dotplot_interactive(\n    aes(data_id = ID),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot'\n  ) +\n  coord_cartesian(xlim=c(0,100)) +\n  scale_y_continuous(NULL, breaks = NULL)\n\np2 &lt;- ggplot(data=exam_data,\n             aes(x=ENGLISH)) +\n  geom_dotplot_interactive(\n    aes(data_id = ID),\n    stackgroups = TRUE,\n    binwidth = 1,\n    method = 'histodot'\n  ) +\n  coord_cartesian(xlim=c(0,100)) +\n  scale_y_continuous(NULL, breaks = NULL)\n\ngirafe(code = print(p1 + p2),\n       width_svg = 6,\n       height_svg = 3,\n       options = list(\n         opts_hover(css = \"fill:#202020;\"),\n         opts_hover_inv(css = \"opacity:0.2;\")\n       )\n)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#interactive-web-data-viz-using-plotly",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#interactive-web-data-viz-using-plotly",
+    "title": "Hands-On Exercise 3",
+    "section": "Interactive Web Data Viz using plotly",
+    "text": "Interactive Web Data Viz using plotly\n\nSimple scatter plot using plot_ly() method\n\nplot_ly(data = exam_data,\n        x = ~MATHS,\n        y = ~ENGLISH,\n        color = ~CLASS)\n\nNo trace type specified:\n  Based on info supplied, a 'scatter' trace seems appropriate.\n  Read more about this trace type -&gt; https://plotly.com/r/reference/#scatter\n\n\nNo scatter mode specifed:\n  Setting the mode to markers\n  Read more about this attribute -&gt; https://plotly.com/r/reference/#scatter-mode\n\n\nWarning in RColorBrewer::brewer.pal(N, \"Set2\"): n too large, allowed maximum for palette Set2 is 8\nReturning the palette you asked for with that many colors\n\nWarning in RColorBrewer::brewer.pal(N, \"Set2\"): n too large, allowed maximum for palette Set2 is 8\nReturning the palette you asked for with that many colors\n\n\n\n\n\n\n\n\nSame scatter plot using plotly: ggplotly() method\n\np &lt;- ggplot(data=exam_data,\n            aes(x=MATHS,\n                y=ENGLISH)) +\n  geom_point(size=1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\nggplotly(p)\n\n\n\n\n\n\n\nCoordinated multiple views using ggplotly()\n\nd &lt;- highlight_key(exam_data)\n\np1 &lt;- ggplot(data=d,\n            aes(x=MATHS,\n                y=ENGLISH)) +\n  geom_point(size=1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\np2 &lt;- ggplot(data=d,\n            aes(x=MATHS,\n                y=SCIENCE)) +\n  geom_point(size=1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\nsubplot(ggplotly(p1),\n        ggplotly(p2))"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#interactive-data-tables",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#interactive-data-tables",
+    "title": "Hands-On Exercise 3",
+    "section": "Interactive Data Tables",
+    "text": "Interactive Data Tables\n\nDT::datatable(exam_data, class= \"compact\")"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#linking-data-table-with-plot",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#linking-data-table-with-plot",
+    "title": "Hands-On Exercise 3",
+    "section": "Linking data table with plot",
+    "text": "Linking data table with plot\n\nd &lt;- highlight_key(exam_data)\np &lt;- ggplot(d,\n            aes(ENGLISH, MATHS)) +\n  geom_point(size=1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\ngg &lt;- highlight(ggplotly(p), 'plotly_selected')\n\ncrosstalk::bscols(gg,\n                  DT::datatable(d),\n                  widths=5)\n\nSetting the `off` event (i.e., 'plotly_deselect') to match the `on` event (i.e., 'plotly_selected'). You can change this default via the `highlight()` function."
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#getting-started-1",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#getting-started-1",
+    "title": "Hands-On Exercise 3",
+    "section": "Getting Started",
+    "text": "Getting Started\n\nInstall and Load Required Packages\n\npacman::p_load(readxl, gifski, gapminder,\n               plotly, gganimate, tidyverse)\n\n\n\nImport the Data\n\ncols &lt;- c('Country', 'Continent')\nglobalPop &lt;- read_xls('data/GlobalPopulation.xls',\n                      sheet='Data') %&gt;%\n  mutate(across(all_of(cols), ~ factor(.x))) %&gt;%\n  mutate(Year = as.integer(Year))"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#animated-data-visualisation-using-gganimate",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#animated-data-visualisation-using-gganimate",
+    "title": "Hands-On Exercise 3",
+    "section": "Animated Data Visualisation using gganimate",
+    "text": "Animated Data Visualisation using gganimate\n\nPopulation bubble plot\nStart with a static bubble plot:\n\nggplot(data=globalPop,\n       aes(x=Old,\n           y=Young,\n           size=Population,\n           colour=Country)) +\n  geom_point(alpha = 0.7,\n            show.legend = FALSE) +\n  scale_color_manual(values = country_colors) +\n  scale_size(range = c(2,12)) +\n  labs(title = 'Year: {frame_time}',\n       x = '% Aged',\n       y = '% Young')\n\n\n\n\nAdd animation by creating transitions across Years:\n\nggplot(data=globalPop,\n       aes(x=Old,\n           y=Young,\n           size=Population,\n           colour=Country)) +\n  geom_point(alpha = 0.7,\n            show.legend = FALSE) +\n  scale_color_manual(values = country_colors) +\n  scale_size(range = c(2,12)) +\n  labs(title = 'Year: {frame_time}',\n       x = '% Aged',\n       y = '% Young') +\n  transition_time(Year) +\n  ease_aes('linear')"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#adding-animations-using-gganimate",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#adding-animations-using-gganimate",
+    "title": "Hands-On Exercise 3",
+    "section": "Adding animations using gganimate",
+    "text": "Adding animations using gganimate\n\nPopulation bubble plot\nStart with a static bubble plot:\n\nggplot(data=globalPop,\n       aes(x=Old,\n           y=Young,\n           size=Population,\n           colour=Country)) +\n  geom_point(alpha = 0.7,\n            show.legend = FALSE) +\n  scale_color_manual(values = country_colors) +\n  scale_size(range = c(2,12)) +\n  labs(title = 'Year: {frame_time}',\n       x = '% Aged',\n       y = '% Young')\n\n\n\n\nAdd animation by creating transitions across Years:\n\nggplot(data=globalPop,\n       aes(x=Old,\n           y=Young,\n           size=Population,\n           colour=Country)) +\n  geom_point(alpha = 0.7,\n            show.legend = FALSE) +\n  scale_color_manual(values = country_colors) +\n  scale_size(range = c(2,12)) +\n  labs(title = 'Year: {frame_time}',\n       x = '% Aged',\n       y = '% Young') +\n  transition_time(Year) +\n  ease_aes('linear')"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#adding-animations-using-plotly",
+    "href": "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html#adding-animations-using-plotly",
+    "title": "Hands-On Exercise 3",
+    "section": "Adding animations using plotly",
+    "text": "Adding animations using plotly\n\nUsing ggplotly() method\n\ngg &lt;- ggplot(data=globalPop,\n             aes(x=Old,\n                 y=Young,\n                 size=Population,\n                 colour=Country)) +\n  geom_point(aes(size = Population,\n                 frame = Year),\n             alpha = 0.7,\n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2,12)) +\n  labs(x = '% Aged',\n       y = '% Young')\n\nWarning in geom_point(aes(size = Population, frame = Year), alpha = 0.7, :\nIgnoring unknown aesthetics: frame\n\nggplotly(gg)\n\nWarning in p$x$data[firstFrame] &lt;- p$x$frames[[1]]$data: number of items to\nreplace is not a multiple of replacement length\n\n\n\n\n\n\n\n\nUsing plot_ly() method\n\nbp &lt;- globalPop %&gt;%\n  plot_ly(x = ~Old,\n          y = ~Young,\n          size = ~Population,\n          color = ~Continent,\n          frame = ~Year,\n          text = ~Country,\n          hoverinfo = 'text',\n          type = 'scatter',\n          mode = 'markers')\n\nbp"
   }
 ]
