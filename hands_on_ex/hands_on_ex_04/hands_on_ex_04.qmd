@@ -1,0 +1,460 @@
+---
+title: "Hands-On Exercise 4"
+author: "Yang Jun"
+date: 4 May 2023
+---
+
+In this Hands-On Exercise, we explore statistical analysis and uncertainty using visual analytics.
+
+# Visual Statistical Analysis
+
+## Getting Started
+
+### Install and Load Required Packages
+
+```{r}
+pacman::p_load(ggstatsplot, tidyverse)
+```
+
+### Import the Data
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+## One-sample test
+
+The following code uses the `gghistostats()` method to build a visual of a one-sample test for English scores.
+
+```{r}
+set.seed(1234)
+
+gghistostats(
+  data = exam_data,
+  x = ENGLISH,
+  type = 'bayes',
+  test.value = 60,
+  xlab = 'English scores'
+)
+```
+
+## Two-sample means test
+
+The following code uses the `ggbetweenstats()` method to build a visual for a two-sample means test of Maths scores by gender.
+
+```{r}
+ggbetweenstats(
+  data = exam_data,
+  x = GENDER,
+  y = MATHS,
+  type = 'np',
+  messages = FALSE
+)
+```
+
+## One-way ANOVA test
+
+The following code uses the `ggbetweenstats()` method to build a visual for an ANOVA test of English scores by race.
+
+```{r}
+ggbetweenstats(
+  data = exam_data,
+  x = RACE,
+  y = ENGLISH,
+  mean.ci = TRUE,
+  pairwise.comparisons = TRUE,
+  pairwise.display = 's',
+  p.adjust.method = 'fdr',
+  messages = FALSE
+)
+```
+
+## Test for significance of correlation
+
+The following code uses the `ggscatterstats()` method to build a visual for testing the significance of correlation between Maths and English scores.
+
+```{r}
+ggscatterstats(
+  data = exam_data,
+  x = MATHS,
+  y = ENGLISH,
+  marginal = FALSE
+)
+```
+
+## Test for significance of association
+
+The following code uses the `ggbarstats()` method to build a visual for testing the significance of association between binned Maths scores and gender.
+
+```{r}
+exam_binned <- exam_data %>%
+  mutate(MATHS_binned =
+           cut(MATHS, breaks = c(0,60,75,85,100)))
+```
+
+```{r}
+ggbarstats(
+  data = exam_binned,
+  x = MATHS_binned,
+  y = GENDER
+)
+```
+
+# Visualising Models
+
+## Getting Started
+
+### Install and Load Required Packages
+
+```{r}
+pacman::p_load(readxl, performance, parameters, see)
+```
+
+### Import the Data
+
+```{r}
+car_resale <- read_xls('data/ToyotaCorolla.xls', 'data')
+car_resale
+```
+
+## Multiple Regression Model
+
+### Create the Model
+
+```{r}
+model <- lm(Price ~ Age_08_04 + Mfg_Year + KM + 
+              Weight + Guarantee_Period, data = car_resale)
+model
+```
+
+### Check for Multicollinearity
+
+```{r}
+check_c <- check_collinearity(model)
+plot(check_c)
+```
+
+### Check for Normality
+
+```{r}
+model1 <- lm(Price ~ Age_08_04 + KM + 
+              Weight + Guarantee_Period, data = car_resale)
+```
+
+```{r}
+check_n <- check_normality(model1)
+plot(check_n)
+```
+
+### Check for homogeneity of variances
+
+```{r}
+check_h <- check_heteroscedasticity(model1)
+plot(check_h)
+```
+
+### Complete check
+
+```{r}
+check_model(model1)
+```
+
+### Visualising regression parameters using `plot()`
+
+```{r}
+plot(parameters(model1))
+```
+
+### Visualising regression parameters using ggcoefstats()
+
+```{r}
+ggcoefstats(model1, output='plot')
+```
+
+# Visualising Uncertainty
+
+## Getting Started
+
+### Install and Load Required Packages
+
+```{r}
+pacman::p_load(tidyverse, plotly, crosstalk, DT, ggdist, gganimate)
+```
+
+### Import the Data
+
+```{r}
+exam <- read_csv("data/Exam_data.csv",
+                 show_col_types = FALSE)
+```
+
+## Uncertainty of Point Estimates
+
+Compute the count of observations, mean, standard deviation and standard error of Maths scores by RACE:
+
+```{r}
+my_sum <- exam %>%
+  group_by(RACE) %>%
+  summarise(
+    n = n(),
+    mean = mean(MATHS),
+    sd = sd(MATHS)
+  ) %>%
+  mutate(
+    se = sd/sqrt(n-1)
+  )
+```
+
+```{r}
+knitr::kable(head(my_sum),
+             format = 'html')
+```
+
+### Standard error of mean Maths scores
+
+```{r}
+ggplot(my_sum) +
+  geom_errorbar(
+    aes(x=RACE,
+        ymin=mean-se,
+        ymax=mean+se),
+    width = 0.2,
+    color = 'black',
+    alpha = 0.9,
+    size = 0.5
+  ) +
+  geom_point(
+    aes(x=RACE,
+        y=mean),
+    stat = 'identity',
+    color = 'red',
+    size = 1.5,
+    alpha = 1
+  ) +
+  ggtitle("Standard error of mean Maths scores by Race")
+```
+
+### 95% CI of mean Maths scores
+
+```{r}
+ggplot(my_sum) +
+  geom_errorbar(
+    aes(x=reorder(RACE,-mean),
+        ymin=mean-se*qnorm(1-0.025),
+        ymax=mean+se*qnorm(1-0.025)),
+    width = 0.2,
+    color = 'black',
+    alpha = 0.9,
+    size = 0.5
+  ) +
+  geom_point(
+    aes(x=reorder(RACE,-mean),
+        y=mean),
+    stat = 'identity',
+    color = 'red',
+    size = 1.5,
+    alpha = 1
+  ) +
+  ggtitle("95% confidence interval for mean Maths scores by Race")
+```
+
+### Interactive error bars
+
+```{r}
+
+```
+
+## Visualising uncertainty using `ggdist` methods
+
+### Using `stat_pointinterval()`
+
+```{r}
+exam %>%
+  ggplot(aes(x = RACE,
+             y = MATHS)) +
+  stat_pointinterval() +
+  labs(
+    title = "Visualising confidence intervals for mean Maths scores",
+    subtitle = "Mean Point + Multiple-interval plot"
+  )
+```
+
+### Using `stat_gradientinterval()`
+
+```{r}
+exam %>%
+  ggplot(aes(x = RACE,
+             y = MATHS)) +
+  stat_gradientinterval(
+    fill = 'skyblue',
+    show.legend = TRUE
+  ) +
+  labs(
+    title = "Visualising confidence intervals for mean Maths scores",
+    subtitle = "Gradient + interval plot"
+  )
+```
+
+### Using Hypothetical Outcome Plots (HOPs)
+
+```{r}
+library(ungeviz)
+```
+
+```{r}
+ggplot(data = exam, 
+       (aes(x = factor(RACE), y = MATHS))) +
+  geom_point(position = position_jitter(
+    height = 0.3, width = 0.05), 
+    size = 0.4, color = "#0072B2", alpha = 1/2) +
+  geom_hpline(data = sampler(25, group = RACE), height = 0.6, color = "#D55E00") +
+  theme_bw() + 
+  # `.draw` is a generated column indicating the sample draw
+  transition_states(.draw, 1, 3)
+```
+
+# Funnel Plots
+
+## Getting Started
+
+### Install and Load Required Packages
+
+```{r}
+pacman::p_load(tidyverse, FunnelPlotR, plotly, knitr)
+```
+
+### Import the Data
+
+```{r}
+covid19 <- read_csv('data/COVID-19_DKI_Jakarta.csv', show_col_types = FALSE) %>%
+  mutate_if(is.character, as.factor)
+```
+
+## Basic Funnel Plot using FunnelPlotR
+
+```{r}
+funnel_plot(
+  numerator = covid19$Death,
+  denominator = covid19$Positive,
+  group = covid19$`Sub-district`
+)
+```
+
+### Funnel Plot: Makeover 1
+
+```{r}
+funnel_plot(
+  numerator = covid19$Death,
+  denominator = covid19$Positive,
+  group = covid19$`Sub-district`,
+  data_type = "PR",
+  x_range = c(0, 6500),
+  y_range = c(0, 0.05)
+)
+```
+
+### Funnel Plot: Makeover 2
+
+```{r}
+funnel_plot(
+  numerator = covid19$Death,
+  denominator = covid19$Positive,
+  group = covid19$`Sub-district`,
+  data_type = "PR",
+  x_range = c(0, 6500),
+  y_range = c(0, 0.05),
+  label = NA,
+  title = "Cumulative COVID-19 Fatality Rate by Cumulative Total Number of COVID-19 Positive Cases",
+  x_label = "Cumulative COVID-19 Positive Cases",
+  y_label = "Cumulative Fatality Rate"
+)
+```
+
+## Building Funnel Plots from Scratch
+
+### Compute derived fields
+
+```{r}
+df <- covid19 %>%
+  mutate(rate = Death/Positive) %>%
+  mutate(rate.se = sqrt( (rate*(1-rate))/Positive )) %>%
+  filter(rate > 0)
+```
+
+```{r}
+fit.mean <- weighted.mean(df$rate, 1/df$rate.se^2)
+```
+
+### Calculate lower and upper limits for 95% and 99.9% CI
+
+```{r}
+number.seq <- seq(1, max(df$Positive), 1)
+number.ll95 <- fit.mean - 1.96 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) 
+number.ul95 <- fit.mean + 1.96 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) 
+number.ll999 <- fit.mean - 3.29 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) 
+number.ul999 <- fit.mean + 3.29 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) 
+dfCI <- data.frame(number.ll95, number.ul95, number.ll999, 
+                   number.ul999, number.seq, fit.mean)
+```
+
+### Plot static funnel plot
+
+```{r}
+p <- ggplot(data=df,
+            aes(x=Positive,
+                y=rate
+                )) +
+  geom_point(aes(label=`Sub-district`),
+             alpha=0.4) +
+  geom_line(data = dfCI, 
+            aes(x = number.seq, 
+                y = number.ll95), 
+            size = 0.4, 
+            colour = "grey40", 
+            linetype = "dashed") +
+  geom_line(data = dfCI, 
+            aes(x = number.seq, 
+                y = number.ul95), 
+            size = 0.4, 
+            colour = "grey40", 
+            linetype = "dashed") +
+  geom_line(data = dfCI, 
+            aes(x = number.seq, 
+                y = number.ll999), 
+            size = 0.4, 
+            colour = "grey40") +
+  geom_line(data = dfCI, 
+            aes(x = number.seq, 
+                y = number.ul999), 
+            size = 0.4, 
+            colour = "grey40") +
+  geom_hline(data = dfCI, 
+             aes(yintercept = fit.mean), 
+             size = 0.4, 
+             colour = "grey40") +
+  coord_cartesian(ylim=c(0,0.05)) +
+  annotate("text", x = 200, y = 0.003, label = "95%", size = 3, colour = "grey40") +
+  annotate("text", x = 500, y = 0.0, label = "99%", size = 3, colour = "grey40") + 
+  ggtitle("Cumulative Fatality Rate by Cumulative Number of COVID-19 Cases") +
+  xlab("Cumulative Number of COVID-19 Cases") + 
+  ylab("Cumulative Fatality Rate") +
+  theme_light() +
+  theme(plot.title = element_text(size=12),
+        legend.position = c(0.91,0.85), 
+        legend.title = element_text(size=7),
+        legend.text = element_text(size=7),
+        legend.background = element_rect(colour = "grey60", linetype = "dotted"),
+        legend.key.height = unit(0.3, "cm"))
+
+
+p
+```
+
+Adding interactivity
+
+```{r}
+fp_ggplotly <- ggplotly(p,
+                        tooltip = c('label', 'x', 'y'))
+
+fp_ggplotly
+```
