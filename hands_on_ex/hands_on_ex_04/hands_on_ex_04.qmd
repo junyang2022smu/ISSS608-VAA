@@ -450,7 +450,7 @@ p <- ggplot(data=df,
 p
 ```
 
-Adding interactivity
+### Adding interactivity
 
 ```{r}
 fp_ggplotly <- ggplotly(p,
