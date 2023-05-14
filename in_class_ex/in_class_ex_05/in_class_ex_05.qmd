@@ -1,0 +1,104 @@
+---
+title: "In-Class Exercise 5"
+author: "Yang Jun"
+date: 13 May 2023
+date-modified: "`r Sys.Date()`"
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+## Import Packages and Data
+
+```{r}
+pacman::p_load(jsonlite, igraph, tidygraph, ggraph, 
+               visNetwork, lubridate, clock,
+               tidyverse, graphlayouts)
+```
+
+```{r}
+GAStech_nodes <- read_csv("data/GAStech_email_node.csv")
+GAStech_edges <- read_csv("data/GAStech_email_edge-v2.csv")
+```
+
+## Preprocess Data
+
+Convert `SentDate` to date format and add a `Weekday` column using `lubridate` functions:
+
+```{r}
+GAStech_edges %<>%
+  mutate(SentDate = dmy(SentDate)) %>%
+  mutate(Weekday = wday(SentDate,
+                        label = TRUE,
+                        abbr =FALSE))
+```
+
+Aggregate the edges data by date, sender & receiver, main subject, and weekday:
+
+```{r}
+GAStech_edges_aggregated <- GAStech_edges %>%
+  filter(MainSubject == "Work related") %>%
+  group_by(source, target, Weekday) %>%
+    summarise(Weight = n()) %>%
+  filter(source != target) %>%
+  filter(Weight > 1) %>%
+  ungroup()
+```
+
+Generate tidygraph object:
+
+```{r}
+GAStech_graph <- tbl_graph(nodes = GAStech_nodes,
+                           edges = GAStech_edges_aggregated,
+                           directed = TRUE)
+```
+
+## Plot the Graph
+
+```{r}
+ggraph(GAStech_graph,
+       layout='nicely') +
+  geom_edge_link(aes(width=Weight),
+                 alpha=0.2) +
+  scale_edge_width(range = c(0.1,5)) +
+  geom_node_point(aes(color=Department),
+                  size=3) +
+  theme_graph()
+```
+
+### Faceted Edges
+
+```{r}
+set_graph_style()
+
+g <- ggraph(GAStech_graph, 
+            layout = "nicely") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+  scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = Department), 
+                  size = 2) +
+  theme(legend.position = 'bottom')
+
+g + facet_edges(~Weekday)
+```
+
+```{r}
+GAStech_edges_aggregated <- GAStech_edges %>%
+  left_join(GAStech_nodes, by = c("sourceLabel" = "label")) %>%
+  rename(from = id) %>%
+  left_join(GAStech_nodes, by = c("targetLabel" = "label")) %>%
+  rename(to = id) %>%
+  filter(MainSubject == "Work related") %>%
+  group_by(from, to) %>%
+    summarise(weight = n()) %>%
+  filter(from!=to) %>%
+  filter(weight > 1) %>%
+  ungroup()
+```
+
+```{r}
+visNetwork(GAStech_nodes,
+           GAStech_edges_aggregated)
+```

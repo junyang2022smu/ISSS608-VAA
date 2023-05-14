@@ -37,6 +37,7 @@ ggplot(data = exam_data,
 ```
 
 ## The Code Chunk
+
 ```{r}
 #| eval: false
 ggplot(data = exam_data,
@@ -50,7 +51,6 @@ ggplot(data = exam_data,
 
 We use `stat_qq()` and `stat_qq_line()` methods to plot the QQ plot. Note that here `aes` takes an argument called `sample` instead of typical `x` and/or `y`.
 :::
-
 :::
 
 ### Second Attempt: QQ Plot + Statistical Test Table
@@ -79,6 +79,7 @@ qq + table_png
 ```
 
 ## The Code Chunk
+
 ```{r}
 #| eval: false
 qq <- ggplot(data = exam_data,
@@ -96,6 +97,4 @@ table_png <- png::readPNG(tmp, native=TRUE)
 
 qq + table_png
 ```
-
 :::
-

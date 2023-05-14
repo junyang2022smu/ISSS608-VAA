@@ -1,0 +1,22 @@
+---
+title: "Take-Home Exercise 2"
+author: "Yang Jun"
+date: 14 May 2023
+date-modified: "`r Sys.Date()`"
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+```{r}
+# MC1 <- fromJSON('data/MC1.json')
+# 
+# # using select to project and rearrange wanted columns
+# 
+# MC1_nodes <- as_tibble(MC1$nodes) %>%
+#   select(id, type, country)
+# 
+# MC1_edges <- as_tibble(MC1$links) %>%
+#   select(source, target, type, weight, key)
+```
