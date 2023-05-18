@@ -586,5 +586,110 @@
     "title": "Take-Home Exercise 1: City of Engagement",
     "section": "3.2 Overall Financials",
     "text": "3.2 Overall Financials\n\n3.2.1 What does the overall finances of residents look like?\nAt the aggregate level, expenses are about a third of income. We also see the largest income category (Wages) and largest expense category (Shelter).\n\n\n\n\n\n\nVisualisation Design Choice\n\n\n\nHere I used two separate bar charts to compare income and expenses, that were combined using patchwork. Care was taken to ensure that the two x-axis were the same scale, so that direct comparisons between the two charts are possible. Lastly, ggiraph library was used to add interactive tooltips showing the exact amount for each category.\n\n\n\n\nShow Code\np1 &lt;- ggplot(fj_annual%&gt;%group_by(category)%&gt;%summarise(total=sum(amount_total))%&gt;%filter(total&gt;0),\n       aes(x='Income', y=total, fill=fct_infreq(category, total))) +\n  geom_col_interactive(aes(tooltip=paste0(category, ': ', sprintf('%.0f', abs(total)))), \n                       position=position_stack(reverse=TRUE)) +\n  scale_y_continuous(name = 'Amount',\n                     limits = c(0,5e7),\n                     labels = scales::comma) +\n  coord_flip() +\n  xlab('') +\n  scale_fill_brewer(palette = 'Set1', name = 'Income Categories') +\n  theme(axis.text.y = element_text(size=12))\n\np2 &lt;- ggplot(fj_annual%&gt;%group_by(category)%&gt;%summarise(total=sum(amount_total))%&gt;%filter(total&lt;0),\n       aes(x='Expense', y=abs(total), fill=fct_infreq(category, abs(total)))) +\n  geom_col_interactive(aes(tooltip=paste0(category, ': ', sprintf('%.0f', abs(total)))), \n                       position=position_stack(reverse=TRUE)) +\n  scale_y_continuous(name = 'Amount',\n                     limits = c(0,5e7),\n                     labels = scales::comma) +\n  coord_flip() +\n  xlab('') +\n  scale_fill_brewer(palette = 'Set2', name = 'Expense Categories') +\n  theme(axis.text.y = element_text(size=12))\n\np12 &lt;- (p1/p2) +\n  plot_annotation(\n    title = \"In aggregate (Mar 2022 - Feb 2023), residents spent about a third of their income\",\n    subtitle = \"Almost all income comes from Wages, and Shelter is the largest expense.\"\n  )\n\ngirafe(code = print(p12),\n       width_svg = 10,\n       height_svg = 4)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "",
+    "text": "In this Hands-On Exercise, we explore different visual analytics tools and techniques for multidimensional data."
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "1.1 Preparation",
+    "text": "1.1 Preparation\n\n1.1.1 Install and launch R packages\n\npacman::p_load(corrplot, ggstatsplot, tidyverse)\n\n\n\n1.1.2 Import and prepare dataset\n\nwine &lt;- read_csv(\"data/wine_quality.csv\")"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#correlation-visualisation-methods",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#correlation-visualisation-methods",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "1.2 Correlation Visualisation Methods",
+    "text": "1.2 Correlation Visualisation Methods\n\n1.2.1 Scatterplot matrix using pairs() method\n\npanel.cor &lt;- function(x, y, digits=2, prefix=\"\", cex.cor, ...) {\n  usr &lt;- par(\"usr\")\n  on.exit(par(usr))\n  par(usr = c(0, 1, 0, 1))\n  r &lt;- abs(cor(x, y, use=\"complete.obs\"))\n  txt &lt;- format(c(r, 0.123456789), digits=digits)[1]\n  txt &lt;- paste(prefix, txt, sep=\"\")\n  if(missing(cex.cor)) cex.cor &lt;- 0.8/strwidth(txt)\n  text(0.5, 0.5, txt, cex = cex.cor * (1 + r) / 2)\n}\n\npairs(wine[1:12],\n      upper.panel = panel.cor) # option to hide the upper triangle or display correlation coefficient\n\n\n\n\n\n\n1.2.2 Correlogram using ggcormat() method\n\nggstatsplot::ggcorrmat(data=wine,\n                       cor.vars = 1:11,\n                       ggcorrplot.args = list(outline.color='black',\n                                              hc.order = TRUE,\n                                              tl.cex = 10),\n                       title = \"Correlogram for Wine dataset\",\n                       subtitle = \"Four pairs are not significant at p &lt; 0.05\")\n\n\n\n\nGrouped correlogram (by type):\n\ngrouped_ggcorrmat(\n  data = wine,\n  cor.vars = 1:11,\n  grouping.var = type,\n  type = \"robust\",\n  p.adjust.method = \"holm\",\n  plotgrid.args = list(ncol = 2),\n  ggcorrplot.args = list(outline.color = \"black\", \n                         hc.order = TRUE,\n                         tl.cex = 10),\n  annotation.args = list(\n    tag_levels = \"a\",\n    title = \"Correlogram for wine dataset\",\n    subtitle = \"The measures are: alcohol, sulphates, fixed acidity, citric acid, chlorides, residual sugar, density, free sulfur dioxide and volatile acidity\",\n    caption = \"Dataset: UCI Machine Learning Repository\"\n  )\n)\n\n\n\n\n\n\n1.2.3 Correlogram using corrplot package\n\n# Need to compute correlation matrix in R first\nwine.cor &lt;- cor(wine[1:11])\nwine.sig = cor.mtest(wine.cor, conf.level = 0.95)\n\ncorrplot(wine.cor,\n         method = 'ellipse',\n         type = 'lower',\n         diag = FALSE,\n         tl.col = 'black',\n         tl.srt = 45,\n         p.mat = wine.sig$p,\n         sig.level = 0.05)\n\n\n\n\nAdding additional info to upper triangle:\n\ncorrplot.mixed(wine.cor,\n               lower = 'ellipse',\n               upper = 'number',\n               tl.pos = 'lt',\n               diag = 'l',\n               order = 'AOE',\n               tl.col = 'black')\n\n\n\n\nDrawing rectangles based on hierarchical clustering:\n\ncorrplot(wine.cor, \n         method = \"ellipse\", \n         tl.pos = \"lt\",\n         tl.col = \"black\",\n         order=\"hclust\",\n         hclust.method = \"ward.D\",\n         addrect = 3)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-1",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-1",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "2.1 Preparation",
+    "text": "2.1 Preparation\n\n2.1.1 Install and launch R packages\n\npacman::p_load(plotly, tidyverse)\n\n\nlibrary(ggtern)\n\n\n\n2.1.2 Import and prepare dataset\n\npop_data &lt;- read_csv(\"data/respopagsex2000to2018_tidy.csv\") \n\n\n#Deriving the young, economy active and old measures\nagpop_mutated &lt;- pop_data %&gt;%\n  mutate(`Year` = as.character(Year))%&gt;%\n  spread(AG, Population) %&gt;%\n  mutate(YOUNG = rowSums(.[4:8]))%&gt;%\n  mutate(ACTIVE = rowSums(.[9:16]))  %&gt;%\n  mutate(OLD = rowSums(.[17:21])) %&gt;%\n  mutate(TOTAL = rowSums(.[22:24])) %&gt;%\n  filter(Year == 2018)%&gt;%\n  filter(TOTAL &gt; 0)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-ternary-plot",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-ternary-plot",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "2.2 Static Ternary Plot",
+    "text": "2.2 Static Ternary Plot\n\nggtern(data = agpop_mutated,\n       aes(x=YOUNG,\n           y=ACTIVE,\n           z=OLD)) +\n  geom_point() +\n  labs(title = \"Population structure, 2018\") +\n  theme_rgbw()"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-ternary-plot",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-ternary-plot",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "2.3 Interactive Ternary Plot",
+    "text": "2.3 Interactive Ternary Plot\n\n# reusable function for creating annotation object\nlabel &lt;- function(txt) {\n  list(\n    text = txt, \n    x = 0.1, y = 1,\n    ax = 0, ay = 0,\n    xref = \"paper\", yref = \"paper\", \n    align = \"center\",\n    font = list(family = \"serif\", size = 15, color = \"white\"),\n    bgcolor = \"#b3b3b3\", bordercolor = \"black\", borderwidth = 2\n  )\n}\n\n# reusable function for axis formatting\naxis &lt;- function(txt) {\n  list(\n    title = txt, tickformat = \".0%\", tickfont = list(size = 10)\n  )\n}\n\nternaryAxes &lt;- list(\n  aaxis = axis(\"Young\"), \n  baxis = axis(\"Active\"), \n  caxis = axis(\"Old\")\n)\n\n# Initiating a plotly visualization \nplot_ly(\n  agpop_mutated, \n  a = ~YOUNG, \n  b = ~ACTIVE, \n  c = ~OLD, \n  text = ~SZ,\n  color = I(\"black\"), \n  type = \"scatterternary\"\n) %&gt;%\n  layout(\n    annotations = label(\"Ternary Markers\"), \n    ternary = ternaryAxes\n  )"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-2",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-2",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "3.1 Preparation",
+    "text": "3.1 Preparation\n\n3.1.1 Install and launch R packages\n\npacman::p_load(seriation, dendextend, heatmaply, tidyverse)\n\n\n\n3.1.2 Import and prepare dataset\n\nwh &lt;- read_csv(\"data/WHData-2018.csv\")\n\n\nrow.names(wh) &lt;- wh$Country\n\n\nwh1 &lt;- wh %&gt;%\n  select(c(3, 7:12))\n\nwh_matrix &lt;- data.matrix(wh)"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-heatmaps",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-heatmaps",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "3.2 Static Heatmaps",
+    "text": "3.2 Static Heatmaps\n\n3.2.1 heatmap() of R Stats\n\n3.2.1.1 Basic (no clustering)\n\nwh_heatmap &lt;- heatmap(wh_matrix,\n                      Rowv=NA, Colv=NA)\n\n\n\n\n\n\n3.2.1.2 With clustering and scaling\n\nwh_heatmap &lt;- heatmap(wh_matrix,\n                      scale=\"column\",\n                      cexRow = 0.6, \n                      cexCol = 0.8,\n                      margins = c(10, 4))"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-heatmaps-using-heatmaply-package",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-heatmaps-using-heatmaply-package",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "3.3 Interactive Heatmaps using heatmaply package",
+    "text": "3.3 Interactive Heatmaps using heatmaply package\n\n3.3.1 Basic\n\nheatmaply(wh_matrix[, -c(1,2,4,5)],\n          scale = 'column')\n\n\n\n\n\n\n\n3.3.2 Normalised\n\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          Colv=NA,\n          seriate = \"none\",\n          colors = Blues,\n          k_row = 5,\n          margins = c(NA,200,60,NA),\n          fontsize_row = 4,\n          fontsize_col = 5,\n          main=\"World Happiness Score and Variables by Country, 2018 \\nDataTransformation using Normalise Method\",\n          xlab = \"World Happiness Indicators\",\n          ylab = \"World Countries\"\n          )"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-3",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-3",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "4.1 Preparation",
+    "text": "4.1 Preparation\n\n4.1.1 Install and launch R packages\n\npacman::p_load(GGally, parallelPlot, tidyverse)\n\n\n\n4.1.2 Import and prepare dataset\n\nwh &lt;- read_csv(\"data/WHData-2018.csv\")"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-parallel-coordinates-plot",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-parallel-coordinates-plot",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "4.2 Static Parallel Coordinates Plot",
+    "text": "4.2 Static Parallel Coordinates Plot\n\n4.2.1 Basic\n\nggparcoord(data = wh, \n           columns = c(7:12))\n\n\n\n\n\n\n4.2.2 With added boxplot\n\nggparcoord(data = wh, \n           columns = c(7:12), \n           groupColumn = 2,\n           scale = \"uniminmax\",\n           alphaLines = 0.2,\n           boxplot = TRUE, \n           title = \"Parallel Coordinates Plot of World Happines Variables\")\n\n\n\n\n\n\n4.2.3 With facet\n\nggparcoord(data = wh, \n           columns = c(7:12), \n           groupColumn = 2,\n           scale = \"uniminmax\",\n           alphaLines = 0.2,\n           boxplot = TRUE, \n           title = \"Multiple Parallel Coordinates Plots of World Happiness Variables by Region\") +\n  facet_wrap(~ Region) +\n  theme(axis.text.x = element_text(angle=30, hjust=1))"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-parallel-coordinates-plot",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-parallel-coordinates-plot",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "4.3 Interactive Parallel Coordinates Plot",
+    "text": "4.3 Interactive Parallel Coordinates Plot\n\nparallelPlot(select(wh, \"Happiness score\", c(7:12)),\n             width = 320,\n             height = 350,\n             continuousCS = 'YlOrRd',\n             rotateTitle = TRUE,\n             histoVisibility = rep(TRUE, 7))"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-4",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#preparation-4",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "5.1 Preparation",
+    "text": "5.1 Preparation\n\n5.1.1 Install and launch R packages\n\npacman::p_load(treemap, treemapify, tidyverse) \n\n\n\n5.1.2 Import and prepare dataset\n\nrealis2018 &lt;- read_csv(\"data/realis2018.csv\")\n\n\nrealis2018_summarised &lt;- realis2018 %&gt;%\n  group_by(`Project Name`, `Planning Region`, `Planning Area`, `Property Type`, `Type of Sale`) %&gt;%\n  summarise(`Total Units Sold` = sum(`No. of Units`, na.rm = TRUE),\n            `Total Area (sqm)` = sum(`Area (sqm)`, na.rm = TRUE),\n            `Median Unit Price ($ psm)` = median(`Unit Price ($ psm)`, na.rm = TRUE),\n            `Median Transacted Price ($)` = median(`Transacted Price ($)`, na.rm = TRUE))"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-treemaps",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#static-treemaps",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "5.2 Static Treemaps",
+    "text": "5.2 Static Treemaps\n\nrealis2018_selected &lt;- realis2018_summarised %&gt;%\n  filter(`Property Type` == 'Condominium', `Type of Sale` == 'Resale')\n\n\n5.2.1 Using treemap package\n\ntreemap(realis2018_selected,\n        index=c(\"Planning Region\", \"Planning Area\", \"Project Name\"),\n        vSize=\"Total Units Sold\",\n        vColor=\"Median Unit Price ($ psm)\",\n        type = \"value\", # default is \"index\", which colors by hierarchy\n        palette = \"RdYlBu\",\n        sortID = \"Median Transacted Price ($)\",\n        title=\"Resale Condominium by Planning Region and Area, 2018\",\n        title.legend = \"Median Unit Price (S$ per sq. m)\"\n        )\n\n\n\n\n\n5.2.1.1 Changing the layout\n\ntreemap(realis2018_selected,\n        index=c(\"Planning Region\", \"Planning Area\", \"Project Name\"),\n        vSize=\"Total Units Sold\",\n        vColor=\"Median Unit Price ($ psm)\",\n        type = \"manual\", # default is \"index\", which colors by hierarchy\n        palette = \"Blues\",\n        algorithm = \"squarified\", # default is \"pivotSize\"\n        title=\"Resale Condominium by Planning Region and Area, 2018\",\n        title.legend = \"Median Unit Price (S$ per sq. m)\"\n        )\n\n\n\n\n\n\n\n5.2.2 Using treemapify package\n\n5.2.2.1 Basic\n\nggplot(data=realis2018_selected, \n       aes(area = `Total Units Sold`,\n           fill = `Median Unit Price ($ psm)`),\n       layout = \"scol\",\n       start = \"bottomleft\") + \n  geom_treemap() +\n  scale_fill_gradient(low = \"light blue\", high = \"blue\")\n\n\n\n\n\n\n5.2.2.2 Adding hierarchy\n\nggplot(data=realis2018_selected, \n       aes(area = `Total Units Sold`,\n           fill = `Median Unit Price ($ psm)`,\n           subgroup = `Planning Region`,\n           subgroup2 = `Planning Area`),\n       start = \"topleft\") + \n  geom_treemap() +\n  geom_treemap_subgroup2_border(colour='gray70', size=2) +\n  geom_treemap_subgroup_border(colour='white') # note reverse order of plotting"
+  },
+  {
+    "objectID": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-treemaps-using-d3treer",
+    "href": "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html#interactive-treemaps-using-d3treer",
+    "title": "Hands-On Exercise 6: Multivariate Analysis",
+    "section": "5.3 Interactive Treemaps using d3treeR",
+    "text": "5.3 Interactive Treemaps using d3treeR\n\nlibrary(d3treeR)\n\n\ntm &lt;- treemap(realis2018_summarised,\n        index=c(\"Planning Region\", \"Planning Area\", \"Project Name\"),\n        vSize=\"Total Units Sold\",\n        vColor=\"Median Unit Price ($ psm)\",\n        type=\"value\",\n        title=\"Private Residential Property Sold, 2018\",\n        title.legend = \"Median Unit Price (S$ per sq. m)\"\n        )\n\n\n\n\n\nd3tree(tm, rootname = \"Singapore\")"
   }
 ]

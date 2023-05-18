@@ -15,6 +15,8 @@ website:
             href: "hands_on_ex/hands_on_ex_03/hands_on_ex_03.html"
           - text: "Exercise 4: Visualising Statistics & Uncertainty"
             href: "hands_on_ex/hands_on_ex_04/hands_on_ex_04.html"
+          - text: "Exercise 6: Multivariate Analysis"
+            href: "hands_on_ex/hands_on_ex_06/hands_on_ex_06.html"
       - text: "In-Class Exercises"
         menu:
           - text: "Exercise 1: Programming Elegant DataVis with ggplot2"
