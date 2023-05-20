@@ -492,35 +492,35 @@
   {
     "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html",
     "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html",
-    "title": "Take-Home Exercise 2",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
     "section": "",
-    "text": "# MC1 &lt;- fromJSON('data/MC1.json')\n# \n# # using select to project and rearrange wanted columns\n# \n# MC1_nodes &lt;- as_tibble(MC1$nodes) %&gt;%\n#   select(id, type, country)\n# \n# MC1_edges &lt;- as_tibble(MC1$links) %&gt;%\n#   select(source, target, type, weight, key)"
+    "text": "This take-home exercise is based on VAST Challenge 2023’s Mini-Challenge 2."
   },
   {
     "objectID": "in_class_ex/in_class_ex_05/in_class_ex_05.html",
     "href": "in_class_ex/in_class_ex_05/in_class_ex_05.html",
-    "title": "In-Class Exercise 5",
+    "title": "In-Class Exercise 5: Visualising Graph Data",
     "section": "",
     "text": "pacman::p_load(jsonlite, igraph, tidygraph, ggraph, \n               visNetwork, lubridate, clock,\n               tidyverse, graphlayouts)\n\n\nGAStech_nodes &lt;- read_csv(\"data/GAStech_email_node.csv\")\nGAStech_edges &lt;- read_csv(\"data/GAStech_email_edge-v2.csv\")"
   },
   {
     "objectID": "in_class_ex/in_class_ex_05/in_class_ex_05.html#import-packages-and-data",
     "href": "in_class_ex/in_class_ex_05/in_class_ex_05.html#import-packages-and-data",
-    "title": "In-Class Exercise 5",
+    "title": "In-Class Exercise 5: Visualising Graph Data",
     "section": "",
     "text": "pacman::p_load(jsonlite, igraph, tidygraph, ggraph, \n               visNetwork, lubridate, clock,\n               tidyverse, graphlayouts)\n\n\nGAStech_nodes &lt;- read_csv(\"data/GAStech_email_node.csv\")\nGAStech_edges &lt;- read_csv(\"data/GAStech_email_edge-v2.csv\")"
   },
   {
     "objectID": "in_class_ex/in_class_ex_05/in_class_ex_05.html#preprocess-data",
     "href": "in_class_ex/in_class_ex_05/in_class_ex_05.html#preprocess-data",
-    "title": "In-Class Exercise 5",
+    "title": "In-Class Exercise 5: Visualising Graph Data",
     "section": "Preprocess Data",
     "text": "Preprocess Data\nConvert SentDate to date format and add a Weekday column using lubridate functions:\n\nGAStech_edges %&lt;&gt;%\n  mutate(SentDate = dmy(SentDate)) %&gt;%\n  mutate(Weekday = wday(SentDate,\n                        label = TRUE,\n                        abbr =FALSE))\n\nAggregate the edges data by date, sender & receiver, main subject, and weekday:\n\nGAStech_edges_aggregated &lt;- GAStech_edges %&gt;%\n  filter(MainSubject == \"Work related\") %&gt;%\n  group_by(source, target, Weekday) %&gt;%\n    summarise(Weight = n()) %&gt;%\n  filter(source != target) %&gt;%\n  filter(Weight &gt; 1) %&gt;%\n  ungroup()\n\nGenerate tidygraph object:\n\nGAStech_graph &lt;- tbl_graph(nodes = GAStech_nodes,\n                           edges = GAStech_edges_aggregated,\n                           directed = TRUE)"
   },
   {
     "objectID": "in_class_ex/in_class_ex_05/in_class_ex_05.html#plot-the-graph",
     "href": "in_class_ex/in_class_ex_05/in_class_ex_05.html#plot-the-graph",
-    "title": "In-Class Exercise 5",
+    "title": "In-Class Exercise 5: Visualising Graph Data",
     "section": "Plot the Graph",
     "text": "Plot the Graph\n\nggraph(GAStech_graph,\n       layout='nicely') +\n  geom_edge_link(aes(width=Weight),\n                 alpha=0.2) +\n  scale_edge_width(range = c(0.1,5)) +\n  geom_node_point(aes(color=Department),\n                  size=3) +\n  theme_graph()\n\n\n\n\n\nFaceted Edges\n\nset_graph_style()\n\ng &lt;- ggraph(GAStech_graph, \n            layout = \"nicely\") + \n  geom_edge_link(aes(width=Weight), \n                 alpha=0.2) +\n  scale_edge_width(range = c(0.1, 5)) +\n  geom_node_point(aes(colour = Department), \n                  size = 2) +\n  theme(legend.position = 'bottom')\n\ng + facet_edges(~Weekday)\n\n\n\n\n\nGAStech_edges_aggregated &lt;- GAStech_edges %&gt;%\n  left_join(GAStech_nodes, by = c(\"sourceLabel\" = \"label\")) %&gt;%\n  rename(from = id) %&gt;%\n  left_join(GAStech_nodes, by = c(\"targetLabel\" = \"label\")) %&gt;%\n  rename(to = id) %&gt;%\n  filter(MainSubject == \"Work related\") %&gt;%\n  group_by(from, to) %&gt;%\n    summarise(weight = n()) %&gt;%\n  filter(from!=to) %&gt;%\n  filter(weight &gt; 1) %&gt;%\n  ungroup()\n\n\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated)"
   },
@@ -691,5 +691,54 @@
     "title": "Hands-On Exercise 6: Multivariate Analysis",
     "section": "5.3 Interactive Treemaps using d3treeR",
     "text": "5.3 Interactive Treemaps using d3treeR\n\nlibrary(d3treeR)\n\n\ntm &lt;- treemap(realis2018_summarised,\n        index=c(\"Planning Region\", \"Planning Area\", \"Project Name\"),\n        vSize=\"Total Units Sold\",\n        vColor=\"Median Unit Price ($ psm)\",\n        type=\"value\",\n        title=\"Private Residential Property Sold, 2018\",\n        title.legend = \"Median Unit Price (S$ per sq. m)\"\n        )\n\n\n\n\n\nd3tree(tm, rootname = \"Singapore\")"
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#setting-the-scene",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#setting-the-scene",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "1.1 Setting the Scene",
+    "text": "1.1 Setting the Scene\nThe following text is lifted from the Challenge webpage. Emphases are my own.\nThe country of Oceanus has sought FishEye International’s help in identifying companies possibly engaged in illegal, unreported, and unregulated (IUU) fishing. As part of the collaboration, FishEye’s analysts received import/export data for Oceanus’ marine and fishing industries. However, Oceanus has informed FishEye that the data is incomplete. To facilitate their analysis, FishEye transformed the trade data into a knowledge graph. Using this knowledge graph, they hope to understand business relationships, including finding links that will help them stop IUU fishing and protect marine species that are affected by it. FishEye analysts found that node-link diagrams gave them a good high-level overview of the knowledge graph. However, they are now looking for visualizations that provide more detail about patterns for entities in the knowledge graph. There are two main parts to this analysis.\nFirst, FishEye knows from past experience that companies caught fishing illegally will shut down but will then often start up again under a different name. FishEye wants your help to visualize temporal patterns so they can compare the activities of companies over time to determine if the companies have returned to their nefarious acts.\nSecond, FishEye has been using several tools, including artificial intelligence, to reason on the knowledge graph and suggest links that could extend the dataset. They have supplied 12 groups of link suggestions and need your help evaluating these groups to identify which tools are most reliable for completing the graph. FishEye is especially interested in identifying new temporal patterns or anomalies that are only present when new links are added.\nUsing visual analytics, can you help FishEye identify companies that may be engaged in illegal fishing?"
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#the-task",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#the-task",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "1.2 The Task",
+    "text": "1.2 The Task\nUsing appropriate static and interactive statistical graphics methods, help FishEye identify companies that may be engaged in illegal fishing, by answering one of the following four questions listed on the Mini-Challenge 2 webpage:\n\nUse visual analytics to identify temporal patterns for individual entities and between entities in the knowledge graph FishEye created from trade records. Categorize the types of business relationship patterns you find.\nEvaluate the sets of predicted knowledge graph links FishEye has provided using visual analytics. Which sets are most reliable for completing the graph?\nIllustrate how your visual analytics approach can be used to identify new patterns and/or anomalies that are present in the knowledge graph after you have added the links you deemed reliable in question 2.\nIdentify companies that fit a pattern of illegal fishing. Use visualizations to support your conclusions and your confidence in them.\n\nI will be attempting the following question:\nxxx"
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#section",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#section",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "1.3 ",
+    "text": "1.3 \n\n\nShow Code\n# MC1 &lt;- fromJSON('data/MC1.json')\n# \n# # using select to project and rearrange wanted columns\n# \n# MC1_nodes &lt;- as_tibble(MC1$nodes) %&gt;%\n#   select(id, type, country)\n# \n# MC1_edges &lt;- as_tibble(MC1$links) %&gt;%\n#   select(source, target, type, weight, key)"
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#data-overview",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#data-overview",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "3.1 Data Overview",
+    "text": "3.1 Data Overview\nAccording to the provided data dictionary, the main graph has 34,552 nodes and 5,464,092 directed edges (note: file size ~1.55GB). Each edge represents a shipment from a shipper to a receiver.\n\n3.1.1 Node Attributes\n\n\n\n\n\n\n\n\nAttribute\nData Type (assumed)\nDescription\n\n\n\n\nid\nchar\nName of the company that originated (or received) the shipment\n\n\nshpcountry\nchar\nCountry the company most often associated with when shipping\n\n\nrcvcountry\nchar\nCountry the company most often associated with when receiving\n\n\ndataset\nchar\nAlways ‘MC2’\n\n\n\n\n\n3.1.2 Edge Attributes\n\n\n\n\n\n\n\n\nAttribute\nData Type (assumed)\nDescription\n\n\n\n\narrivaldate\ndate\nDate the shipment arrived at port in YYYY-MM-DD format\n\n\nhscode\nchar\nHarmonized System code for the shipment. Can be joined with the hscodes table to get additional details\n\n\nvalueofgoods_omu\ninteger\nCustoms-declared value of the total shipment, in Oceanus Monetary Units OMU\n\n\nvolumeteu\ninteger\nThe volume of the shipment in ‘Twenty-foot equivalent units’, roughly how many 20-foot standard containers would be required. Actual number of containers may have been different as there are 20ft and 40ft standard containers and tankers that do not use containers)\n\n\nweightkg\ninteger\nThe weight of the shipment in kilograms (if known)\n\n\ndataset\nchar\nAlways ‘MC2’\n\n\ntype\nchar\nAlways ‘shipment’ for MC2\n\n\ngenerated_by\nchar\nName of the program that generated the edge. (Only found on ‘bundle’ records)"
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#entities",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#entities",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "4.1 Entities",
+    "text": "4.1 Entities\n\n4.1.1 Companies\nOf the 34,576 companies, about two-thirds (22,003) do not have a name, only an ID number:\n\n\nShow Code\nMC2_nodes %&gt;%\n  select(id) %&gt;%\n  distinct() %&gt;%\n  filter(str_detect(id, regex(r\"(-\\d+$)\")))\n\n\n# A tibble: 22,003 × 1\n   id    \n   &lt;fct&gt; \n 1 -1143 \n 2 -6894 \n 3 -12516\n 4 -1515 \n 5 -4897 \n 6 -193  \n 7 -54   \n 8 -21759\n 9 -214  \n10 -91   \n# ℹ 21,993 more rows\n\n\n\n\n4.1.2 Countries\nLet’s see which countries appear most frequently ship to, and receive shipments from, Oceanus. First, count the countries:\n\n\nShow Code\nMC2_nodes_shpToOceanus &lt;- MC2_nodes %&gt;%\n  filter(shpcountry!='Oceanus' & rcvcountry=='Oceanus') %&gt;%\n  group_by(shpcountry) %&gt;%\n  filter(!is.na(shpcountry)) %&gt;%\n  summarise(count = n())\n\nMC2_nodes_rcvFrOceanus &lt;- MC2_nodes %&gt;%\n  filter(shpcountry=='Oceanus' & rcvcountry!='Oceanus') %&gt;%\n  group_by(rcvcountry) %&gt;%\n  filter(!is.na(rcvcountry)) %&gt;%\n  summarise(count = n())\n\n# unused for now\nMC2_nodes_gathered &lt;- MC2_nodes %&gt;%\n  filter(shpcountry=='Oceanus' | rcvcountry=='Oceanus') %&gt;%\n  gather(\"shprcvcountry\", \"country\", -id, na.rm = TRUE) %&gt;%\n  group_by(country, shprcvcountry) %&gt;%\n  filter(country!='Oceanus') %&gt;%\n  summarise(count=n()) \n  # spread(shprcvcountry, count, fill = 0)\n\n\nThen, plot the countries:\n\n\nShow Code\np1 &lt;- ggplot(slice_max(MC2_nodes_shpToOceanus, order_by = count, n=20),\n       aes(y=fct_reorder(shpcountry, count),\n           x=count)) +\n  geom_col() +\n  scale_x_continuous(name = 'No. of Companies', position='top', limits=c(0,1700), expand=c(0,0)) +\n  scale_y_discrete(name = 'Country') +\n  theme_minimal() +\n  theme(axis.ticks.y=element_blank()) +\n  labs(title = \"Top 20 countries most often exporting to Oceanus\",\n       )\n\np2 &lt;- ggplot(slice_max(MC2_nodes_rcvFrOceanus, order_by = count, n=20, with_ties = FALSE),\n       aes(y=fct_reorder(rcvcountry, count),\n           x=count)) +\n  geom_col() +\n  scale_x_continuous(name = 'No. of Companies', position='top', limits=c(0,17), expand=c(0,0)) +\n  scale_y_discrete(name = 'Country') +\n  theme_minimal() +\n  theme(axis.ticks.y=element_blank()) +\n  labs(title = \"Top 20 countries most often importing from Oceanus\",\n       )\n\np1 + p2\n\n\n\n\n\nFrom the above graph, we can see that for companies that have Oceanus as their most common receiving country, the most common shipping country is Marebak. On the other hand, for companies that have Oceanus as their most common shipping country, the most common receiving country is Coralmarica. Note the dramatically different x-axis scales: far more most commonly companies ship to Oceanus than receive from Oceanus."
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#data-cleaning-conversion-to-graph",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#data-cleaning-conversion-to-graph",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "3.2 Data Cleaning & Conversion to Graph",
+    "text": "3.2 Data Cleaning & Conversion to Graph\n\n3.2.1 Main Graph\nLet’s load the main graph JSON data first. (This takes a while due to the size of the file.)\n\nMC2 &lt;- fromJSON('data/mc2_challenge_graph.json')\n\nThen, we convert the data to a “tidy” format using tidygraph methods, excluding unneeded columns at the same time. (Note: there’s a discrepancy between the data dictionary and data — there’s no type attribute found in the edges data.)\n\nMC2_nodes &lt;- as_tibble(MC2$nodes) %&gt;%\n  select(!dataset) %&gt;%\n  mutate(across(c(id, shpcountry, rcvcountry), as.factor))\n\nMC2_edges &lt;- as_tibble(MC2$links) %&gt;%\n  select(!dataset) %&gt;%\n  mutate(across(c(hscode, source, target), as.factor))\n\nNext, we double-check the columns and correct data types as necessary.\n\nWe discover that there is an additional attribute in edges, named valueofgoodsusd, which we will leave in place for now.\nThe edge attribute arrivaldate has been interpreted as a char type. Let’s change it to a date type:\n\n\nMC2_edges %&lt;&gt;% mutate(arrivaldate = ymd(arrivaldate))\n\nFinally, we create a tidygraph object from the nodes and edges data:\n\n# reorder columns to what tidygraph expects\nMC2_nodes %&lt;&gt;%\n  relocate(id)\n\nMC2_edges %&lt;&gt;%\n  relocate(source, target)\n\nMC2_graph &lt;- tbl_graph(nodes = MC2_nodes,\n                       edges = MC2_edges,\n                       directed = TRUE)\n\n\n3.2.1.1 Data Completeness\nLet’s do a check on missing values:\n\n\nShow Code\ncolMeans(is.na(MC2_nodes))\n\n\n        id shpcountry rcvcountry \n 0.0000000  0.6466624  0.0841335 \n\n\nShow Code\ncolMeans(is.na(MC2_edges))\n\n\n          source           target      arrivaldate           hscode \n      0.00000000       0.00000000       0.00000000       0.00000000 \nvalueofgoods_omu        volumeteu         weightkg  valueofgoodsusd \n      0.99994858       0.09533253       0.00000000       0.55227585 \n\n\nHere, we can see that some attributes have a very high proportion of missing values: shpcountry (65%), valueofgoods_emu (&gt;99%), and valueofgoodsusd (55%). Let’s just bear this in mind for now.\n\n\n\n3.2.2 Bundles\nxxx"
+  },
+  {
+    "objectID": "take_home_ex/take_home_ex_02/take_home_ex_02.html#shipments",
+    "href": "take_home_ex/take_home_ex_02/take_home_ex_02.html#shipments",
+    "title": "Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2",
+    "section": "4.2 Shipments",
+    "text": "4.2 Shipments\n\n4.2.1 Number of shipments over time\n\n\nShow Code\nggplot(MC2_edges %&gt;% \n         group_by(arrivalmonthyear=floor_date(arrivaldate, unit ='month')) %&gt;% \n         summarise(count = n(), \n                   totalvalue_omu = sum(valueofgoods_omu, na.rm = TRUE),\n                   totalvalue_usd = sum(valueofgoodsusd, na.rm = TRUE)),\n       aes(x=arrivalmonthyear)) +\n  scale_x_date(name = 'Arrival', date_breaks = 'year', date_minor_breaks = 'month', date_labels = '%Y') +\n  scale_y_continuous(name = 'No. of Shipments', labels = scales::comma) +\n  geom_line(aes(y=count)) +\n  # geom_line(aes(y=totalvalue_omu), color='red') +\n  # geom_line(aes(y=totalvalue_usd), color='blue') +\n  labs(title = \"Total number of shipments over time\")\n\n\n\n\n\n\n\n4.2.2 Total value of shipments over time\n\n\nShow Code\nggplot(MC2_edges %&gt;% \n         group_by(arrivalmonthyear=floor_date(arrivaldate, unit ='month')) %&gt;% \n         summarise(count = n(), \n                   totalvalue_omu = sum(valueofgoods_omu, na.rm = TRUE),\n                   totalvalue_usd = sum(valueofgoodsusd, na.rm = TRUE)) %&gt;%\n         pivot_longer(c(totalvalue_omu, totalvalue_usd), names_to = \"currency\", values_to = \"valueofgoods\"),\n       aes(x=arrivalmonthyear,\n           color=currency)) +\n  scale_x_date(name = 'Arrival', date_breaks = 'year', date_minor_breaks = 'month', date_labels = '%Y') +\n  scale_y_sqrt(name = 'Value', labels = scales::label_comma(suffix = \"M\", scale=1e-6)) +\n  geom_line(aes(y=valueofgoods)) +\n  scale_color_discrete(name = 'Currency', labels = c('OMU', 'USD')) +\n  # geom_line(aes(y=count)) +\n  # geom_line(aes(y=totalvalue_omu), color='red') +\n  # geom_line(aes(y=totalvalue_usd), color='blue') +\n  labs(title = \"Total value of shipments over time\",\n       subtitle = \"Note: value scale uses square-root values.\")\n\n\n\n\n\n\n\n4.2.3 Distribution of shipment values\n\n\nShow Code\nggplot(MC2_edges,\n       aes(x=valueofgoodsusd,\n           )) +\n  geom_boxplot() +\n  scale_x_log10() +\n  labs(title = \"Distribution of shipment values\")\n\n\n\n\n\n\n\nShow Code\n# ggplot(MC2_edges,\n#        aes(x=as.numeric(hscode))) +\n#   geom_histogram()\n\n\n\n\nShow Code\n# ggplot(MC2_edges,\n#        aes(x=as.numeric(hscode),\n#            y=valueofgoodsusd)) +\n#   geom_point()\n\n\n\n\nShow Code\n# ggplot(MC2_edges,\n#        aes(x=as.numeric(hscode),\n#            weight=weightkg)) +\n#   geom_histogram(binwidth = 100)"
   }
 ]
