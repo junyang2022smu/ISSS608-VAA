@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.319">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Yang Jun">
 <meta name="dcterms.date" content="2023-05-14">
 
-<title>ISSS608-VAA - Take-Home Exercise 2</title>
+<title>ISSS608-VAA - Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,10 +19,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,13 +48,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -110,67 +139,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Hands-On Exercises</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_01/hands_on_ex_01.html" rel="" target="">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_01/hands_on_ex_01.html">
  <span class="dropdown-text">Exercise 1: Basics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_02/hands_on_ex_02.html" rel="" target="">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_02/hands_on_ex_02.html">
  <span class="dropdown-text">Exercise 2: Annotations, Themes, Multiple Graphs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_03/hands_on_ex_03.html" rel="" target="">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_03/hands_on_ex_03.html">
  <span class="dropdown-text">Exercise 3: Interactivity and Animations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_04/hands_on_ex_04.html" rel="" target="">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_04/hands_on_ex_04.html">
  <span class="dropdown-text">Exercise 4: Visualising Statistics &amp; Uncertainty</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_06/hands_on_ex_06.html">
+ <span class="dropdown-text">Exercise 6: Multivariate Analysis</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">In-Class Exercises</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercises">    
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_01/in_class_ex_01.html" rel="" target="">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_01/in_class_ex_01.html">
  <span class="dropdown-text">Exercise 1: Programming Elegant DataVis with ggplot2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_03/in_class_ex_03.html" rel="" target="">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_03/in_class_ex_03.html">
  <span class="dropdown-text">Exercise 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_04/in_class_ex_04.html" rel="" target="">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_04/in_class_ex_04.html">
  <span class="dropdown-text">Exercise 4: Visualising Normal Distribution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_05/in_class_ex_05.html">
+ <span class="dropdown-text">Exercise 5: Visualising Graph Data</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-Home Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../take_home_ex/take_home_ex_01/take_home_ex_01.html">
+ <span class="dropdown-text">Exercise 1: City of Engagement</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../take_home_ex/take_home_ex_02/take_home_ex_02.html">
+ <span class="dropdown-text">Exercise 2: VAST Challenge 2023, Mini-Challenge 2</span></a>
   </li>  
     </ul>
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
+    <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
+              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -180,14 +230,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-brief" id="toc-the-brief" class="nav-link active" data-scroll-target="#the-brief"><span class="toc-section-number">1</span>  The Brief</a>
+  <ul class="collapse">
+  <li><a href="#setting-the-scene" id="toc-setting-the-scene" class="nav-link" data-scroll-target="#setting-the-scene"><span class="toc-section-number">1.1</span>  Setting the Scene</a></li>
+  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task"><span class="toc-section-number">1.2</span>  The Task</a></li>
+  </ul></li>
+  <li><a href="#libraries-and-packages" id="toc-libraries-and-packages" class="nav-link" data-scroll-target="#libraries-and-packages"><span class="toc-section-number">2</span>  Libraries and Packages</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">3</span>  Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview"><span class="toc-section-number">3.1</span>  Data Overview</a>
+  <ul class="collapse">
+  <li><a href="#node-attributes" id="toc-node-attributes" class="nav-link" data-scroll-target="#node-attributes"><span class="toc-section-number">3.1.1</span>  Node Attributes</a></li>
+  <li><a href="#edge-attributes" id="toc-edge-attributes" class="nav-link" data-scroll-target="#edge-attributes"><span class="toc-section-number">3.1.2</span>  Edge Attributes</a></li>
+  </ul></li>
+  <li><a href="#data-cleaning-conversion-to-graph" id="toc-data-cleaning-conversion-to-graph" class="nav-link" data-scroll-target="#data-cleaning-conversion-to-graph"><span class="toc-section-number">3.2</span>  Data Cleaning &amp; Conversion to Graph</a>
+  <ul class="collapse">
+  <li><a href="#main-graph" id="toc-main-graph" class="nav-link" data-scroll-target="#main-graph"><span class="toc-section-number">3.2.1</span>  Main Graph</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis"><span class="toc-section-number">4</span>  Exploratory Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#entities" id="toc-entities" class="nav-link" data-scroll-target="#entities"><span class="toc-section-number">4.1</span>  Entities</a>
+  <ul class="collapse">
+  <li><a href="#companies" id="toc-companies" class="nav-link" data-scroll-target="#companies"><span class="toc-section-number">4.1.1</span>  Companies</a></li>
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">4.1.2</span>  Countries</a></li>
+  </ul></li>
+  <li><a href="#shipments" id="toc-shipments" class="nav-link" data-scroll-target="#shipments"><span class="toc-section-number">4.2</span>  Shipments</a>
+  <ul class="collapse">
+  <li><a href="#number-of-shipments-over-time" id="toc-number-of-shipments-over-time" class="nav-link" data-scroll-target="#number-of-shipments-over-time"><span class="toc-section-number">4.2.1</span>  Number of shipments over time</a></li>
+  <li><a href="#total-value-of-shipments-over-time" id="toc-total-value-of-shipments-over-time" class="nav-link" data-scroll-target="#total-value-of-shipments-over-time"><span class="toc-section-number">4.2.2</span>  Total value of shipments over time</a></li>
+  <li><a href="#relationship-between-shipment-value-and-size" id="toc-relationship-between-shipment-value-and-size" class="nav-link" data-scroll-target="#relationship-between-shipment-value-and-size"><span class="toc-section-number">4.2.3</span>  Relationship between shipment value and size</a></li>
+  <li><a href="#aggregating-edges" id="toc-aggregating-edges" class="nav-link" data-scroll-target="#aggregating-edges"><span class="toc-section-number">4.2.4</span>  Aggregating Edges</a></li>
+  </ul></li>
+  <li><a href="#build-graph" id="toc-build-graph" class="nav-link" data-scroll-target="#build-graph"><span class="toc-section-number">4.3</span>  Build Graph</a></li>
+  </ul></li>
+  <li><a href="#network-analysis" id="toc-network-analysis" class="nav-link" data-scroll-target="#network-analysis"><span class="toc-section-number">5</span>  Network Analysis</a>
+  <ul class="collapse">
+  <li><a href="#centrality" id="toc-centrality" class="nav-link" data-scroll-target="#centrality"><span class="toc-section-number">5.1</span>  Centrality</a>
+  <ul class="collapse">
+  <li><a href="#top-companies-by-different-centrality-measures" id="toc-top-companies-by-different-centrality-measures" class="nav-link" data-scroll-target="#top-companies-by-different-centrality-measures"><span class="toc-section-number">5.1.1</span>  Top companies by different centrality measures</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#temporal-analysis" id="toc-temporal-analysis" class="nav-link" data-scroll-target="#temporal-analysis"><span class="toc-section-number">6</span>  Temporal Analysis</a>
+  <ul class="collapse">
+  <li><a href="#operating-timelines-of-source-companies" id="toc-operating-timelines-of-source-companies" class="nav-link" data-scroll-target="#operating-timelines-of-source-companies"><span class="toc-section-number">6.1</span>  Operating Timelines of Source Companies</a></li>
+  <li><a href="#day-of-week-activity" id="toc-day-of-week-activity" class="nav-link" data-scroll-target="#day-of-week-activity"><span class="toc-section-number">6.2</span>  Day-of-Week Activity</a></li>
+  <li><a href="#high-centrality-nodes" id="toc-high-centrality-nodes" class="nav-link" data-scroll-target="#high-centrality-nodes"><span class="toc-section-number">6.3</span>  High-Centrality Nodes</a>
+  <ul class="collapse">
+  <li><a href="#high-betweenness" id="toc-high-betweenness" class="nav-link" data-scroll-target="#high-betweenness"><span class="toc-section-number">6.3.1</span>  High Betweenness</a></li>
+  <li><a href="#high-in-degree" id="toc-high-in-degree" class="nav-link" data-scroll-target="#high-in-degree"><span class="toc-section-number">6.3.2</span>  High In-Degree</a></li>
+  <li><a href="#high-out-degree" id="toc-high-out-degree" class="nav-link" data-scroll-target="#high-out-degree"><span class="toc-section-number">6.3.3</span>  High Out-Degree</a></li>
+  <li><a href="#high-eigenvector-centrality" id="toc-high-eigenvector-centrality" class="nav-link" data-scroll-target="#high-eigenvector-centrality"><span class="toc-section-number">6.3.4</span>  High Eigenvector Centrality</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#other-explorations" id="toc-other-explorations" class="nav-link" data-scroll-target="#other-explorations"><span class="toc-section-number">7</span>  Other Explorations</a>
+  <ul class="collapse">
+  <li><a href="#ego-networks" id="toc-ego-networks" class="nav-link" data-scroll-target="#ego-networks"><span class="toc-section-number">7.1</span>  Ego Networks</a></li>
+  <li><a href="#shipments-among-high-centrality-nodes" id="toc-shipments-among-high-centrality-nodes" class="nav-link" data-scroll-target="#shipments-among-high-centrality-nodes"><span class="toc-section-number">7.2</span>  Shipments among high centrality nodes</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Take-Home Exercise 2</h1>
+<h1 class="title">Take-Home Exercise 2: VAST Challenge 2023, Mini-Challenge 2</h1>
 </div>
 
 
@@ -211,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 14, 2023</p>
+      <p class="date-modified">June 4, 2023</p>
     </div>
   </div>
     
@@ -220,19 +333,953 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>This take-home exercise is based on <a href="https://vast-challenge.github.io/2023/MC2.html">VAST Challenge 2023’s Mini-Challenge 2</a>.</p>
+<section id="the-brief" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The Brief</h1>
+<section id="setting-the-scene" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="setting-the-scene"><span class="header-section-number">1.1</span> Setting the Scene</h2>
+<p><em>The following text is lifted from the Challenge webpage. Emphases are my own.</em></p>
+<p>The country of Oceanus has sought FishEye International’s help in identifying companies possibly engaged in <strong>illegal, unreported, and unregulated (IUU) fishing</strong>. As part of the collaboration, FishEye’s analysts received <strong>import/export data for Oceanus’ marine and fishing industries</strong>. However, Oceanus has informed FishEye that the data is incomplete. To facilitate their analysis, FishEye transformed the trade data into a <strong>knowledge graph</strong>. Using this knowledge graph, they hope to understand <strong>business relationships</strong>, including finding links that will help them stop IUU fishing and protect marine species that are affected by it. FishEye analysts found that node-link diagrams gave them a good high-level overview of the knowledge graph. However, they are now looking for visualizations that provide more detail about patterns for entities in the knowledge graph. There are two main parts to this analysis.</p>
+<p>First, FishEye knows from past experience that companies caught fishing illegally will shut down but will then often start up again under a different name. FishEye wants your help to <strong>visualize temporal patterns so they can compare the activities of companies over time</strong> to determine if the companies have returned to their nefarious acts.</p>
+<p>Second, FishEye has been using several tools, including artificial intelligence, to reason on the knowledge graph and suggest <strong>links that could extend the dataset</strong>. They have supplied 12 groups of link suggestions and need your help evaluating these groups to identify which tools are most reliable for completing the graph. FishEye is especially interested in identifying <strong>new temporal patterns or anomalies that are only present when new links are added.</strong></p>
+<p>Using visual analytics, can you help FishEye identify companies that may be engaged in illegal fishing?</p>
+</section>
+<section id="the-task" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-task"><span class="header-section-number">1.2</span> The Task</h2>
+<p>Using appropriate <strong>static and interactive statistical graphics</strong> methods, help FishEye identify companies that may be engaged in illegal fishing, by answering <strong>one</strong> of the following four questions listed on the Mini-Challenge 2 webpage:</p>
+<ol type="1">
+<li><p>Use visual analytics to identify <strong>temporal patterns for individual entities and between entities</strong> in the knowledge graph FishEye created from trade records. Categorize the types of business relationship patterns you find.</p></li>
+<li><p>Evaluate the sets of predicted knowledge graph links FishEye has provided using visual analytics. Which sets are most <strong>reliable</strong> for completing the graph?</p></li>
+<li><p>Illustrate how your visual analytics approach can be used to <strong>identify new patterns and/or anomalies</strong> that are present in the knowledge graph after you have added the links you deemed reliable in question 2.</p></li>
+<li><p><strong>Identify companies that fit a pattern of illegal fishing</strong>. Use visualizations to support your conclusions and your confidence in them.</p></li>
+</ol>
+<p>I will be attempting the first question:</p>
+<p>Use visual analytics to identify <strong>temporal patterns for individual entities and between entities</strong> in the knowledge graph FishEye created from trade records. Categorize the types of business relationship patterns you find.</p>
+</section>
+</section>
+<section id="libraries-and-packages" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Libraries and Packages</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MC1 &lt;- fromJSON('data/MC1.json')</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # using select to project and rearrange wanted columns</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># MC1_nodes &lt;- as_tibble(MC1$nodes) %&gt;%</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(id, type, country)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># MC1_edges &lt;- as_tibble(MC1$links) %&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(source, target, type, weight, key)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(jsonlite, readxl, fuzzyjoin, igraph, tidygraph, tidytext, ggraph, ggradar, fmsb, patchwork, GGally, colorspace,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               visNetwork, lubridate, clock,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               tidyverse, magrittr, graphlayouts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="data-preparation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Preparation</h1>
+<section id="data-overview" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-overview"><span class="header-section-number">3.1</span> Data Overview</h2>
+<p>According to the provided data dictionary, the main graph has <strong>34,552 nodes</strong> and <strong>5,464,092 directed edges</strong> (note: file size ~1.55GB). Each edge represents a shipment from a shipper to a receiver.</p>
+<section id="node-attributes" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="node-attributes"><span class="header-section-number">3.1.1</span> Node Attributes</h3>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Data Type (assumed)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>char</td>
+<td>Name of the company that originated (or received) the shipment</td>
+</tr>
+<tr class="even">
+<td><code>shpcountry</code></td>
+<td>char</td>
+<td>Country the company most often associated with when shipping</td>
+</tr>
+<tr class="odd">
+<td><code>rcvcountry</code></td>
+<td>char</td>
+<td>Country the company most often associated with when receiving</td>
+</tr>
+<tr class="even">
+<td><code>dataset</code></td>
+<td>char</td>
+<td>Always ‘MC2’</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="edge-attributes" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="edge-attributes"><span class="header-section-number">3.1.2</span> Edge Attributes</h3>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Data Type (assumed)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>arrivaldate</code></td>
+<td>date</td>
+<td>Date the shipment arrived at port in YYYY-MM-DD format</td>
+</tr>
+<tr class="even">
+<td><code>hscode</code></td>
+<td>char</td>
+<td>Harmonized System code for the shipment. Can be joined with the <code>hscodes</code> table to get additional details</td>
+</tr>
+<tr class="odd">
+<td><code>valueofgoods_omu</code></td>
+<td>integer</td>
+<td>Customs-declared value of the total shipment, in Oceanus Monetary Units OMU</td>
+</tr>
+<tr class="even">
+<td><code>volumeteu</code></td>
+<td>integer</td>
+<td>The volume of the shipment in ‘Twenty-foot equivalent units’, roughly how many 20-foot standard containers would be required. Actual number of containers may have been different as there are 20ft and 40ft standard containers and tankers that do not use containers)</td>
+</tr>
+<tr class="odd">
+<td><code>weightkg</code></td>
+<td>integer</td>
+<td>The weight of the shipment in kilograms (if known)</td>
+</tr>
+<tr class="even">
+<td><code>dataset</code></td>
+<td>char</td>
+<td>Always ‘MC2’</td>
+</tr>
+<tr class="odd">
+<td><code>type</code></td>
+<td>char</td>
+<td>Always ‘shipment’ for MC2</td>
+</tr>
+<tr class="even">
+<td><code>generated_by</code></td>
+<td>char</td>
+<td>Name of the program that generated the edge. (Only found on ‘bundle’ records)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="data-cleaning-conversion-to-graph" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-cleaning-conversion-to-graph"><span class="header-section-number">3.2</span> Data Cleaning &amp; Conversion to Graph</h2>
+<section id="main-graph" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="main-graph"><span class="header-section-number">3.2.1</span> Main Graph</h3>
+<p>Let’s load the main graph JSON data first. (This takes a while due to the size of the file.) Then persist it for faster loading next time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="st">'data/mc2.rds'</span>)) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  MC2 <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">'data/mc2.rds'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   MC2 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">'data/mc2_challenge_graph.json'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">write_rds</span>(MC2, <span class="st">'data/mc2.rds'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we convert the data to a “tidy” format using <code>tidygraph</code> methods, excluding unneeded columns at the same time. (Note: there’s a discrepancy between the data dictionary and data — there’s no <code>type</code> attribute found in the edges data.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MC2_nodes <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(MC2<span class="sc">$</span>nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>dataset) </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>MC2_edges <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(MC2<span class="sc">$</span>links) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we double-check the columns and correct data types as necessary.</p>
+<ul>
+<li><p>We discover that there is an additional attribute in edges, named <code>valueofgoodsusd</code>, which we will leave in place for now.</p></li>
+<li><p>The edge attribute <code>arrivaldate</code> has been interpreted as a <code>char</code> type. Let’s change it to a <code>date</code> type:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MC2_edges <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(<span class="at">arrivaldate =</span> <span class="fu">ymd</span>(arrivaldate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>The HS Codes appear problematic. According to online research, the first 6 digits of HS Code should be consistent across countries, while the subsequent digits may differ. However, the most common HS code in the data, <code>306170</code>, is not even a valid HS code. My suspicion is that there is a missing leading 0, i.e.&nbsp;the correct code is actually <code>030617</code> (possibly with subsequent digits). This could have been the result of incorrect data storage/export: the leading 0 may not have been stored, and the export function may have simply extracted the first 6 digits of the data. Using the full list of <a href="https://www.tradenet.gov.sg/tradenet/portlets/search/searchHSCA/searchInitHSCA.do">HS Codes published by Singapore Customs</a> as a reference, let’s examine what HS Codes might be erroneous:</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># HS Codes provided by Singapore Customs</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tradenet_hscodes <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">'data/AllHSCode20230527155627.xls'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>code_6d <span class="ot">&lt;-</span> tradenet_hscodes <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">hscode =</span> <span class="fu">substring</span>(<span class="st">`</span><span class="at">HS Code</span><span class="st">`</span>,<span class="dv">1</span>,<span class="dv">6</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(hscode)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>MC2_invalid_hscodes <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hscode) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hscode) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cnt =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">validcode =</span> hscode <span class="sc">%in%</span> code_6d) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(validcode <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(hscode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Among these, since our use case involves fishing, we would be particularly interested in correcting HS Codes related to fish, seafood, etc. From the World Customs Organization website, these would be codes from Chapter 3 (<em>Fish and crustaceans, molluscs and other aquatic invertebrates</em>), specifically 0301-0309 (erroneously coded as 301xxx to 309xxx in our data). So let’s correct these:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>MC2_edges <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hscode_corrected =</span> <span class="fu">if_else</span>(hscode <span class="sc">%in%</span> MC2_invalid_hscodes <span class="sc">&amp;</span> <span class="fu">strtoi</span>(<span class="fu">substr</span>(hscode,<span class="dv">1</span>,<span class="dv">3</span>))<span class="sc">&gt;=</span><span class="dv">301</span> <span class="sc">&amp;</span> <span class="fu">strtoi</span>(<span class="fu">substr</span>(hscode,<span class="dv">1</span>,<span class="dv">3</span>))<span class="sc">&lt;=</span><span class="dv">309</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">paste0</span>(<span class="st">'0'</span>, <span class="fu">substr</span>(hscode,<span class="dv">1</span>,<span class="dv">5</span>)),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                    hscode)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>hscode) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hscode =</span> hscode_corrected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let’s check for possible duplicate shipment records. We see there are about 100K duplicate shipment records in the dataset. We can remove them when we create the edges for the graph.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+    `n()`
+    &lt;int&gt;
+1 5309087</code></pre>
+</div>
+</div>
+<p>Finally, we create a tidygraph object from the nodes and edges data, using only fishing-related edges (i.e.&nbsp;starting with 03) and their corresponding nodes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reorder columns to what tidygraph expects</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>MC2_edges <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">substr</span>(hscode,<span class="dv">1</span>,<span class="dv">2</span>)<span class="sc">==</span><span class="st">'03'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(source, target) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>MC2_node_ids <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  MC2_edges <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">id=</span>source),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  MC2_edges <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">id=</span>target)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>MC2_nodes <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> <span class="fu">pull</span>(MC2_node_ids,id)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(id)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>MC2_graph <span class="ot">&lt;-</span> <span class="fu">tbl_graph</span>(<span class="at">nodes =</span> MC2_nodes,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">edges =</span> MC2_edges,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                       <span class="at">directed =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After cutting down our data, we are left with about a quarter of the original number of nodes, and a tenth of the original number of edges:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(MC2_nodes <span class="sc">%&gt;%</span> <span class="fu">summary</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      id             shpcountry         rcvcountry       
+ Length:9048        Length:9048        Length:9048       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(MC2_edges <span class="sc">%&gt;%</span> <span class="fu">summary</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    source             target           arrivaldate         valueofgoods_omu  
+ Length:547725      Length:547725      Min.   :2028-01-01   Min.   :    5705  
+ Class :character   Class :character   1st Qu.:2029-11-29   1st Qu.:  398655  
+ Mode  :character   Mode  :character   Median :2031-09-08   Median :  760180  
+                                       Mean   :2031-08-15   Mean   : 2118449  
+                                       3rd Qu.:2033-05-28   3rd Qu.: 1654955  
+                                       Max.   :2034-12-30   Max.   :44744530  
+                                                            NA's   :547566    
+   volumeteu            weightkg         valueofgoodsusd        hscode         
+ Min.   :   0.0000   Min.   :        0   Min.   :        0   Length:547725     
+ 1st Qu.:   0.0000   1st Qu.:    18150   1st Qu.:    75905   Class :character  
+ Median :   0.0000   Median :    20360   Median :   133075   Mode  :character  
+ Mean   :   0.3802   Mean   :    22716   Mean   :   164421                     
+ 3rd Qu.:   0.0000   3rd Qu.:    23015   3rd Qu.:   196102                     
+ Max.   :1215.0000   Max.   :131710670   Max.   :111432620                     
+ NA's   :606                             NA's   :19914                         </code></pre>
+</div>
+</div>
+<section id="data-completeness" class="level4" data-number="3.2.1.1">
+<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="data-completeness"><span class="header-section-number">3.2.1.1</span> Data Completeness</h4>
+<p>Let’s do a check on missing values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">is.na</span>(MC2_nodes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        id shpcountry rcvcountry 
+ 0.0000000  0.3322281  0.1320734 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(<span class="fu">is.na</span>(MC2_edges))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          source           target      arrivaldate valueofgoods_omu 
+     0.000000000      0.000000000      0.000000000      0.999709708 
+       volumeteu         weightkg  valueofgoodsusd           hscode 
+     0.001106395      0.000000000      0.036357661      0.000000000 </code></pre>
+</div>
+</div>
+<p>Here, we can see that some attributes have a very high proportion of missing values: <code>shpcountry</code> (33%) and <code>valueofgoods_omu</code> (99.9%). Let’s just bear this in mind for now.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="exploratory-data-analysis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Exploratory Data Analysis</h1>
+<section id="entities" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="entities"><span class="header-section-number">4.1</span> Entities</h2>
+<section id="companies" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="companies"><span class="header-section-number">4.1.1</span> Companies</h3>
+<p>Of the companies, about 30% (2,797) do not have a name, only an ID number:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>MC2_nodes <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(id, <span class="fu">regex</span>(r<span class="st">"(-\d+$)"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,797 × 1
+   id    
+   &lt;chr&gt; 
+ 1 -1143 
+ 2 -6894 
+ 3 -12516
+ 4 -1515 
+ 5 -193  
+ 6 -54   
+ 7 -21759
+ 8 -214  
+ 9 -987  
+10 -754  
+# ℹ 2,787 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="countries" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="countries"><span class="header-section-number">4.1.2</span> Countries</h3>
+<p>Let’s see which countries appear most frequently ship to, and receive shipments from, Oceanus. First, count the countries:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>MC2_nodes_shpToOceanus <span class="ot">&lt;-</span> MC2_nodes <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shpcountry<span class="sc">!=</span><span class="st">'Oceanus'</span> <span class="sc">&amp;</span> rcvcountry<span class="sc">==</span><span class="st">'Oceanus'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(shpcountry) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(shpcountry)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>MC2_nodes_rcvFrOceanus <span class="ot">&lt;-</span> MC2_nodes <span class="sc">%&gt;%</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shpcountry<span class="sc">==</span><span class="st">'Oceanus'</span> <span class="sc">&amp;</span> rcvcountry<span class="sc">!=</span><span class="st">'Oceanus'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rcvcountry) <span class="sc">%&gt;%</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rcvcountry)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># unused for now</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>MC2_nodes_gathered <span class="ot">&lt;-</span> MC2_nodes <span class="sc">%&gt;%</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shpcountry<span class="sc">==</span><span class="st">'Oceanus'</span> <span class="sc">|</span> rcvcountry<span class="sc">==</span><span class="st">'Oceanus'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">"shprcvcountry"</span>, <span class="st">"country"</span>, <span class="sc">-</span>id, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, shprcvcountry) <span class="sc">%&gt;%</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country<span class="sc">!=</span><span class="st">'Oceanus'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count=</span><span class="fu">n</span>()) </span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spread(shprcvcountry, count, fill = 0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Then, plot the countries:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">slice_max</span>(MC2_nodes_shpToOceanus, <span class="at">order_by =</span> count, <span class="at">n=</span><span class="dv">20</span>),</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">fct_reorder</span>(shpcountry, count),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">'No. of Companies'</span>, <span class="at">position=</span><span class="st">'top'</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1700</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">'Country'</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 20 countries most often exporting to Oceanus"</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">slice_max</span>(MC2_nodes_rcvFrOceanus, <span class="at">order_by =</span> count, <span class="at">n=</span><span class="dv">20</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y=</span><span class="fu">fct_reorder</span>(rcvcountry, count),</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">x=</span>count)) <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">'No. of Companies'</span>, <span class="at">position=</span><span class="st">'top'</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">17</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">'Country'</span>) <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 20 countries most often importing from Oceanus"</span>,</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>From the above graph, we can see that for companies that have Oceanus as their most common receiving country, the most common shipping country is Marebak. On the other hand, for companies that have Oceanus as their most common shipping country, the most common receiving country is Coralmarica. Note the dramatically different x-axis scales: far more most commonly companies ship to Oceanus than receive from Oceanus.</p>
+</section>
+</section>
+<section id="shipments" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="shipments"><span class="header-section-number">4.2</span> Shipments</h2>
+<section id="number-of-shipments-over-time" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="number-of-shipments-over-time"><span class="header-section-number">4.2.1</span> Number of shipments over time</h3>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(MC2_edges <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(<span class="at">arrivalmonthyear=</span><span class="fu">floor_date</span>(arrivaldate, <span class="at">unit =</span><span class="st">'month'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">totalvalue_omu =</span> <span class="fu">sum</span>(valueofgoods_omu, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">totalvalue_usd =</span> <span class="fu">sum</span>(valueofgoodsusd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear)) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">'No. of Shipments'</span>, <span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>count)) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(y=totalvalue_omu), color='red') +</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(y=totalvalue_usd), color='blue') +</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total number of shipments over time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="total-value-of-shipments-over-time" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="total-value-of-shipments-over-time"><span class="header-section-number">4.2.2</span> Total value of shipments over time</h3>
+<p>We can see that data for the value of shipments in OMU is only available for a short period in 2034-2035. In contrast value of shipments in USD is available throughout the period, and displays seasonality as well as an overall upward trend. The seasonality is probably to be expected since fishing is seasonally affected.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(MC2_edges <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(<span class="at">arrivalmonthyear=</span><span class="fu">floor_date</span>(arrivaldate, <span class="at">unit =</span><span class="st">'month'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">totalvalue_omu =</span> <span class="fu">sum</span>(valueofgoods_omu, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">totalvalue_usd =</span> <span class="fu">sum</span>(valueofgoodsusd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">pivot_longer</span>(<span class="fu">c</span>(totalvalue_omu, totalvalue_usd), <span class="at">names_to =</span> <span class="st">"currency"</span>, <span class="at">values_to =</span> <span class="st">"valueofgoods"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">mutate</span>(<span class="at">valueofgoods =</span> <span class="fu">na_if</span>(valueofgoods, <span class="dv">0</span>)),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span>currency)) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_sqrt</span>(<span class="at">name =</span> <span class="st">'Value'</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(<span class="at">suffix =</span> <span class="st">"M"</span>, <span class="at">scale=</span><span class="fl">1e-6</span>)) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>valueofgoods)) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">'Currency'</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'OMU'</span>, <span class="st">'USD'</span>)) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(y=count)) +</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(y=totalvalue_omu), color='red') +</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(y=totalvalue_usd), color='blue') +</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total value of shipments over time"</span>,</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Note: value axis uses a square-root scale."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="relationship-between-shipment-value-and-size" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="relationship-between-shipment-value-and-size"><span class="header-section-number">4.2.3</span> Relationship between shipment value and size</h3>
+<p>A log-log plot of shipment value (in USD) against shipment weight (in kg) shows an almost straight line, indicating a power relationship.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(MC2_edges <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(valueofgoodsusd, weightkg) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>valueofgoodsusd<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span>weightkg<span class="sc">==</span><span class="dv">0</span>),</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>weightkg,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>valueofgoodsusd)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="aggregating-edges" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="aggregating-edges"><span class="header-section-number">4.2.4</span> Aggregating Edges</h3>
+<p>Now let’s aggregate the edges (shipments) to reduce the number of edges to work with to a more manageable number:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>MC2_edges_agg <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(source,target) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">shipment_count =</span> <span class="fu">n</span>(),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">arrivaldate_earliest =</span> <span class="fu">min</span>(arrivaldate),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">arrivaldate_latest =</span> <span class="fu">max</span>(arrivaldate))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(MC2_edges_agg <span class="sc">%&gt;%</span> <span class="fu">summary</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    source             target          shipment_count     arrivaldate_earliest
+ Length:35895       Length:35895       Min.   :    1.00   Min.   :2028-01-01  
+ Class :character   Class :character   1st Qu.:    1.00   1st Qu.:2028-12-22  
+ Mode  :character   Mode  :character   Median :    2.00   Median :2030-07-31  
+                                       Mean   :   15.26   Mean   :2030-11-21  
+                                       3rd Qu.:    8.00   3rd Qu.:2032-08-27  
+                                       Max.   :10876.00   Max.   :2034-12-29  
+ arrivaldate_latest  
+ Min.   :2028-01-01  
+ 1st Qu.:2030-01-09  
+ Median :2032-01-09  
+ Mean   :2031-12-07  
+ 3rd Qu.:2033-12-17  
+ Max.   :2034-12-30  </code></pre>
+</div>
+</div>
+<p>We still have close to 36,000 edges after aggregation. Let’s examine the distribution of shipment counts:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>MC2_edges_agg <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>shipment_count)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Clearly, the vast majority of edges have very low shipment counts. Let’s eliminate these low-count edges and focus our attention on more ‘active’ relationships:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>MC2_edges_agg <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shipment_count <span class="sc">&gt;</span> <span class="dv">20</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(MC2_edges_agg <span class="sc">%&gt;%</span> <span class="fu">summary</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    source             target          shipment_count    arrivaldate_earliest
+ Length:4157        Length:4157        Min.   :   21.0   Min.   :2028-01-01  
+ Class :character   Class :character   1st Qu.:   29.0   1st Qu.:2028-02-27  
+ Mode  :character   Mode  :character   Median :   44.0   Median :2029-01-01  
+                                       Mean   :  101.3   Mean   :2029-08-23  
+                                       3rd Qu.:   88.0   3rd Qu.:2030-10-11  
+                                       Max.   :10876.0   Max.   :2034-11-30  
+ arrivaldate_latest  
+ Min.   :2028-02-24  
+ 1st Qu.:2032-04-18  
+ Median :2034-04-29  
+ Mean   :2033-06-21  
+ 3rd Qu.:2034-11-25  
+ Max.   :2034-12-30  </code></pre>
+</div>
+</div>
+<p>Now we are left with a much more manageable number of edges, a bit over 4,000.</p>
+</section>
+</section>
+<section id="build-graph" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="build-graph"><span class="header-section-number">4.3</span> Build Graph</h2>
+<p>Let’s re-extract the nodes and build our new graph:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>MC2_nodes_extracted <span class="ot">&lt;-</span> MC2_nodes <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(id <span class="sc">%in%</span> MC2_edges_agg<span class="sc">$</span>source <span class="sc">|</span> id <span class="sc">%in%</span> MC2_edges_agg<span class="sc">$</span>target)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="ot">&lt;-</span> <span class="fu">tbl_graph</span>(<span class="at">nodes =</span> MC2_nodes_extracted,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">edges =</span> MC2_edges_agg,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>A first visual look at the resulting graph:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'fr'</span>) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Rightaway, we can see that there is one large connected component in the centre, and many other smaller disconnected components (each of 2-3 nodes). To focus our attention on the largest component, let’s extract just that:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">group_components</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(group<span class="sc">==</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let’s see how the graph looks like now:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">'lightblue'</span>) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From here on out, we’ll only use this subset of nodes and edges for analysis.</p>
+</section>
+</section>
+<section id="network-analysis" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Network Analysis</h1>
+<section id="centrality" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="centrality"><span class="header-section-number">5.1</span> Centrality</h2>
+<p>In networks, it’s common to look at the centrality of nodes as it gives a sense of which nodes are ‘important’ in a network. There are different measures of centrality. Let’s generate centrality statistics for the following:</p>
+<ul>
+<li><p>Degree: both in-degree and out-degree, with both unweighted and weighted variants (reflects number of counterparties and direction/total volume of shipments)</p></li>
+<li><p>Betweenness (reflects the importance that nodes play as ‘bridges’ between different parts of the network)</p></li>
+<li><p>Eigenvector (reflects importance, based on whether other important nodes connect to it)</p></li>
+</ul>
+<p>We also calculate the ratio of out-degree to in-degree: this will help us characterise whether a company is more of a sender or receiver.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">deg_o =</span> <span class="fu">centrality_degree</span>(<span class="at">mode=</span><span class="st">'out'</span>),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">wdeg_o =</span> <span class="fu">centrality_degree</span>(<span class="at">weights=</span>shipment_count, <span class="at">mode=</span><span class="st">'out'</span>),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">deg_i =</span> <span class="fu">centrality_degree</span>(<span class="at">mode=</span><span class="st">'in'</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">wdeg_i =</span> <span class="fu">centrality_degree</span>(<span class="at">weights=</span>shipment_count, <span class="at">mode=</span><span class="st">'in'</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">deg_oi_ratio =</span> (deg_o<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>(deg_i<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">wdeg_oi_ratio =</span> (wdeg_o<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>(wdeg_i<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">betweenness =</span> <span class="fu">centrality_betweenness</span>(<span class="at">normalized =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">eigen =</span> <span class="fu">centrality_eigen</span>(<span class="at">weights=</span>shipment_count))</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>centralities <span class="ot">&lt;-</span> MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="top-companies-by-different-centrality-measures" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="top-companies-by-different-centrality-measures"><span class="header-section-number">5.1.1</span> Top companies by different centrality measures</h3>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>top_centralities <span class="ot">&lt;-</span> MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(deg_o, wdeg_o, deg_i, wdeg_i, betweenness, eigen), <span class="at">names_to=</span><span class="st">'centrality_type'</span>, <span class="at">values_to=</span><span class="st">'centrality_value'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(centrality_type) <span class="sc">%&gt;%</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, centrality_value) <span class="sc">%&gt;%</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">reorder_within</span>(id, centrality_value, centrality_type))</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_centralities, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">fct_reorder</span>(r, centrality_value), <span class="at">y=</span>centrality_value, <span class="at">fill=</span>id)) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>centrality_type, <span class="at">scales =</span> <span class="st">'free'</span>) <span class="sc">+</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reordered</span>(<span class="at">name =</span> <span class="st">"Companies"</span>) <span class="sc">+</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">'Centrality Value'</span>) <span class="sc">+</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Companies by various centrality measures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+<p>As we would expect, these companies with high centrality scores are generally located in the centre of the network when we draw the network graph using a stress layout:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># activate(edges) %&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(shipment_count &gt;200) %&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">top10_centrality =</span> <span class="fu">ifelse</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id, <span class="st">'Yes'</span>, <span class="st">'No'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutate(component = group_components()) %&gt;%</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">group_components</span>()<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count),</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">name =</span> <span class="st">'No. of shipments'</span>, <span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">log10</span>(deg_oi_ratio), <span class="at">color=</span>top10_centrality, <span class="at">size=</span>top10_centrality), <span class="at">shape=</span><span class="dv">21</span>, <span class="at">stroke=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_size(range = c(1,5)) +</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_color_discrete(name = 'Top 10 Centrality', direction=-1) +</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous_diverging</span>(<span class="at">palette=</span><span class="st">'Blue-Red 3'</span>, <span class="at">guide=</span><span class="st">'none'</span>, <span class="at">l1=</span><span class="dv">30</span>, <span class="at">l2=</span><span class="dv">100</span>, <span class="at">p1=</span><span class="fl">0.9</span>, <span class="at">p2=</span><span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_manual</span>(<span class="at">name =</span> <span class="st">'Top 10 Centrality'</span>, <span class="at">values=</span><span class="fu">c</span>(<span class="st">'Yes'</span><span class="ot">=</span><span class="dv">5</span>,<span class="st">'No'</span><span class="ot">=</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">'Top 10 Centrality'</span>, <span class="at">values=</span><span class="fu">c</span>(<span class="st">'transparent'</span>, <span class="st">'black'</span>)) <span class="sc">+</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Graph of shipments"</span>,</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Colour indicates whether company mostly sends (red) or receives (blue).</span><span class="sc">\n</span><span class="st">High centrality nodes are indicated by larger size and black border."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="temporal-analysis" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Temporal Analysis</h1>
+<section id="operating-timelines-of-source-companies" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="operating-timelines-of-source-companies"><span class="header-section-number">6.1</span> Operating Timelines of Source Companies</h2>
+<p>It was mentioned in the challenge that <em>“companies caught fishing illegally will shut down but will then often start up again under a different name”</em>. Here, I tried to plot the operating timelines of the companies to see if such temporal patterns can be detected. I made an assumption that in such situations, the old and new companies would be similar in scale (shipment values or volumes). Hence I put time on the x-axis and ‘operation scale’ (average) on the y-axis so that companies of similar scale would appear closer together. To avoid clutter, I only plotted the start and end months of operations, each with a different shape. Hence, proximity of two different shapes at roughly the same vertical height could indicate the described pattern.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>source_monthly_agg <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(source,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">arrivalmonthyear=</span><span class="fu">floor_date</span>(arrivaldate, <span class="at">unit =</span><span class="st">'month'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalvalue_omu =</span> <span class="fu">sum</span>(valueofgoods_omu, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalvalue_usd =</span> <span class="fu">sum</span>(valueofgoodsusd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalweight_kg =</span> <span class="fu">sum</span>(weightkg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">avgvalue_omu =</span> <span class="fu">mean</span>(valueofgoods_omu, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">avgvalue_usd =</span> <span class="fu">mean</span>(valueofgoodsusd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">avgweight_kg =</span> <span class="fu">mean</span>(weightkg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>source_earliest_latest <span class="ot">&lt;-</span> source_monthly_agg <span class="sc">%&gt;%</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(source) <span class="sc">%&gt;%</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">arrivalmonthyear_earliest =</span> <span class="fu">min</span>(arrivalmonthyear),</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">arrivalmonthyear_latest =</span> <span class="fu">max</span>(arrivalmonthyear)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(arrivalmonthyear_earliest, arrivalmonthyear_latest),</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">'arrivalmonthyear_type'</span>,</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">'arrivalmonthyear'</span>)</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>source_agg_earliest_latest <span class="ot">&lt;-</span> source_monthly_agg <span class="sc">%&gt;%</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(source_earliest_latest,</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="fu">join_by</span>(source, arrivalmonthyear)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>source_agg_earliest_latest <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(avgweight_kg <span class="sc">&lt;</span> <span class="fl">20e6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span>avgweight_kg,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">group=</span>source,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span>source)) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>arrivalmonthyear_type)) <span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(data=source_agg_earliest_latest) +</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">'Average Shipment Weight (kg)'</span>,  <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(<span class="at">suffix =</span> <span class="st">"M"</span>, <span class="at">scale=</span><span class="fl">1e-6</span>)) <span class="sc">+</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">guide=</span><span class="st">'none'</span>) <span class="sc">+</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">'Event'</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'First Shipment'</span>, <span class="st">'Last Shipment'</span>), <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">cut_number</span>(avgweight_kg, <span class="dv">6</span>), <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">'free'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="1920"></p>
+</div>
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme(legend.position = 'none')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="day-of-week-activity" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="day-of-week-activity"><span class="header-section-number">6.2</span> Day-of-Week Activity</h2>
+<p>Here, I wondered if companies who engage in illegal fishing might be trying to do so on certain days of the week with less shipments to lessen the chance of getting caught. Hence, I decided to examine the number of companies operating shipments by days of the week:</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(arrivaldate, <span class="at">week_start =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(arrivaldate)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weekday) <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">shipments =</span> <span class="fu">n_distinct</span>(source)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>weekday,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span>shipments)) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">name =</span> <span class="st">'Day of Week'</span>) <span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">'Number of companies'</span>) <span class="sc">+</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of companies operating by day of week"</span>,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"There are overall fewer shipments on 'Wed' and 'Thu' compared to other days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It seems that there are fewer companies operating on ‘Wed’ and ‘Thu’ compared to the other days of the week. (Note that since the dates given in the data are fictitious, it might not really be Wed and Thu; they could well be Sat and Sun, i.e.&nbsp;the weekend.)</p>
+</section>
+<section id="high-centrality-nodes" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="high-centrality-nodes"><span class="header-section-number">6.3</span> High-Centrality Nodes</h2>
+<p>Let’s examine the temporal patterns of the high-centrality nodes in greater detail.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>shipment_send <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(source,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">arrivalmonthyear=</span><span class="fu">floor_date</span>(arrivaldate, <span class="at">unit =</span><span class="st">'month'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">shipment_count =</span> <span class="fu">n</span>(),</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalvalue_usd =</span> <span class="fu">sum</span>(valueofgoodsusd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalweight_kg =</span> <span class="fu">sum</span>(weightkg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shipment_count_type =</span> <span class="st">'send'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id =</span> source)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>shipment_receive <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">arrivalmonthyear=</span><span class="fu">floor_date</span>(arrivaldate, <span class="at">unit =</span><span class="st">'month'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">shipment_count =</span> <span class="fu">n</span>(),</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalvalue_usd =</span> <span class="fu">sum</span>(valueofgoodsusd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalweight_kg =</span> <span class="fu">sum</span>(weightkg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shipment_count_type =</span> <span class="st">'receive'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">id =</span> target)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co"># test3 &lt;- test %&gt;%</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="co">#   full_join(test2,</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="co">#             by = join_by(source==target, arrivalmonthyear==arrivalmonthyear))</span></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>shipment_all <span class="ot">&lt;-</span> <span class="fu">union</span>(shipment_send, shipment_receive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="high-betweenness" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="high-betweenness"><span class="header-section-number">6.3.1</span> High Betweenness</h3>
+<p>We can see something interesting with the nodes having the top 5 betweenness centrality. They all consistently send and receive shipments throughout the months, so may be playing roles as <strong>forwarders</strong> or <strong>transshipment providers</strong>. The differences between number of shipments sent and received are fairly big. Two of them receive a lot more shipments than they send, while the third is the opposite.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>top_ids <span class="ot">&lt;-</span> top_centralities <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(centrality_type<span class="sc">==</span><span class="st">'betweenness'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">3</span>, centrality_value) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(id)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>shipment_all <span class="sc">%&gt;%</span> </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>shipment_count)) <span class="sc">+</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour=</span>id, <span class="at">linetype=</span>shipment_count_type)) <span class="sc">+</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>() <span class="sc">+</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Shipments sent and received over time by top 3 companies with highest betweenness"</span>) <span class="sc">+</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+</section>
+<section id="high-in-degree" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="high-in-degree"><span class="header-section-number">6.3.2</span> High In-Degree</h3>
+<p>In contrast with the high betweenness nodes, the top 3 companies with highest in-degree almost only exclusively receive shipments. This profile suggests they may be <strong>wholesalers</strong> or <strong>purchasers</strong>.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>top_ids <span class="ot">&lt;-</span> top_centralities <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(centrality_type<span class="sc">==</span><span class="st">'wdeg_i'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">3</span>, centrality_value) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(id)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>shipment_all <span class="sc">%&gt;%</span> </span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear,</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>shipment_count)) <span class="sc">+</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour=</span>id, <span class="at">linetype=</span>shipment_count_type)) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>() <span class="sc">+</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Shipments sent and received over time for top 3 companies with highest in-degree"</span>) <span class="sc">+</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+</section>
+<section id="high-out-degree" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="high-out-degree"><span class="header-section-number">6.3.3</span> High Out-Degree</h3>
+<p>As expected, the opposite is observed from the top 3 companies with highest out-degree: they almost only exclusively send shipments (except for one, which had a very low volume of receiving shipments during 2028-2033). This profile suggests they may be the actual <strong>fishing companies</strong>.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>top_ids <span class="ot">&lt;-</span> top_centralities <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(centrality_type<span class="sc">==</span><span class="st">'wdeg_o'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">3</span>, centrality_value) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(id)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>shipment_all <span class="sc">%&gt;%</span> </span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>shipment_count)) <span class="sc">+</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour=</span>id, <span class="at">linetype=</span>shipment_count_type)) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>() <span class="sc">+</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Shipments sent and received over time for top 3 companies with highest out-degree"</span>) <span class="sc">+</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+</section>
+<section id="high-eigenvector-centrality" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="high-eigenvector-centrality"><span class="header-section-number">6.3.4</span> High Eigenvector Centrality</h3>
+<p>Of the top 3 companies with highest eigenvector centrality, two are the same as top 3 with highest out-degree. No immediate inferences can be drawn, more study is required.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>top_ids <span class="ot">&lt;-</span> top_centralities <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(centrality_type<span class="sc">==</span><span class="st">'eigen'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">3</span>, centrality_value) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(id)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>shipment_all <span class="sc">%&gt;%</span> </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>arrivalmonthyear,</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span>shipment_count)) <span class="sc">+</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">colour=</span>id, <span class="at">linetype=</span>shipment_count_type)) <span class="sc">+</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">name =</span> <span class="st">'Arrival'</span>, <span class="at">date_breaks =</span> <span class="st">'year'</span>, <span class="at">date_minor_breaks =</span> <span class="st">'month'</span>, <span class="at">date_labels =</span> <span class="st">'%Y'</span>) <span class="sc">+</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_discrete</span>() <span class="sc">+</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Shipments sent and received over time for top 3 companies with highest eigenvector centrality"</span>) <span class="sc">+</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="other-explorations" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Other Explorations</h1>
+<section id="ego-networks" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="ego-networks"><span class="header-section-number">7.1</span> Ego Networks</h2>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">convert</span>(to_local_neighborhood,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">node =</span> <span class="fu">which</span>(<span class="fu">.N</span>()<span class="sc">$</span>id <span class="sc">==</span> <span class="st">'Selous Game Reserve  S.A. de C.V.'</span>),</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">order =</span> <span class="dv">1</span>,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mode =</span> <span class="st">'all'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">color =</span> <span class="fu">ifelse</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id, <span class="st">'high centrality'</span>, <span class="st">'others'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'fr'</span>) <span class="sc">+</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count, <span class="at">alpha=</span>..index..),</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size=</span><span class="dv">5</span>, <span class="at">color=</span>color)) <span class="sc">+</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="shipments-among-high-centrality-nodes" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="shipments-among-high-centrality-nodes"><span class="header-section-number">7.2</span> Shipments among high centrality nodes</h2>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count),</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">'lightblue'</span>) <span class="sc">+</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -262,23 +1309,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -343,92 +1376,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

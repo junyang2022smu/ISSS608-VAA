@@ -31,6 +31,8 @@ website:
         menu:
           - text: "Exercise 1: City of Engagement"
             href: "take_home_ex/take_home_ex_01/take_home_ex_01.html"
+          - text: "Exercise 2: VAST Challenge 2023, Mini-Challenge 2"
+            href: "take_home_ex/take_home_ex_02/take_home_ex_02.html"
     right:
       - href: index.qmd
         text: Home
@@ -43,4 +45,8 @@ format:
     toc: true
 
 editor: visual
+
+execute:
+  freeze: true
+  
 
