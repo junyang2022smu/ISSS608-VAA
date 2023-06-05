@@ -678,6 +678,59 @@ shipment_all %>%
   theme_minimal()
 ```
 
+### Day-of-Week Comparison Between High-Centrality Nodes
+
+This heatmap shows the number of shipments sent and received by high-centrality nodes (on any measure) broken down by days of the week. It distinctly shows that for about 3/4 of the companies, they primarily send or receive but not both. For the remaining companies though, they send and receive roughly the same number of shipments throughout a week.
+
+```{r, fig.width=15, fig.height=10}
+top_ids <- top_centralities %>%
+  pull(id) %>%
+  unique()
+
+send_weekdays <- MC2_edges %>%
+  mutate(weekday = wday(arrivaldate, week_start = 1, label = TRUE)) %>%
+  filter(source %in% top_ids) %>%
+  count(source, weekday) %>%
+  arrange(desc(tolower(source)), weekday) %>%
+  mutate(shipment_type = 'send') %>%
+  rename(company = source)
+
+receive_weekdays <- MC2_edges %>%
+  mutate(weekday = wday(arrivaldate, week_start = 1, label = TRUE)) %>%
+  filter(target %in% top_ids) %>%
+  count(target, weekday) %>%
+  arrange(desc(tolower(target)), weekday) %>%
+  mutate(shipment_type = 'receive') %>%
+  rename(company = target)
+
+send_receive_weekdays <- union(send_weekdays, receive_weekdays) %>%
+  mutate(across(shipment_type, as.factor))
+
+ggplot(send_receive_weekdays,
+       aes(x=weekday, 
+           y=fct_inorder(company),
+           fill=n)) +
+geom_tile(color = "white",
+        size = 0.1) +
+coord_equal() +
+scale_x_discrete(position = 'top') +
+scale_fill_gradient(name = "# of shipments",
+                  low = "light blue",
+                  high = "dark blue") +
+theme(axis.ticks = element_blank(),
+      panel.grid = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.title = element_text(size = 8),
+    legend.text = element_text(size = 6)
+    ) +
+labs(title = "Number of Shipments Sent/Received by High Centrality Nodes per Day of Week",
+     subtitle = "Note: Day of week may not be true value due to use of fictitious dates, but relative order should be correct.",
+     x = "Day of Week",
+     y = "Company") +
+  facet_wrap(~fct_rev(shipment_type))
+```
+
 # Other Explorations
 
 ## Ego Networks

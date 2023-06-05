@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.319">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -139,72 +110,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">ISSS608-VAA</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Hands-On Exercises</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_01/hands_on_ex_01.html">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_01/hands_on_ex_01.html" rel="" target="">
  <span class="dropdown-text">Exercise 1: Basics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_02/hands_on_ex_02.html">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_02/hands_on_ex_02.html" rel="" target="">
  <span class="dropdown-text">Exercise 2: Annotations, Themes, Multiple Graphs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_03/hands_on_ex_03.html">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_03/hands_on_ex_03.html" rel="" target="">
  <span class="dropdown-text">Exercise 3: Interactivity and Animations</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_04/hands_on_ex_04.html">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_04/hands_on_ex_04.html" rel="" target="">
  <span class="dropdown-text">Exercise 4: Visualising Statistics &amp; Uncertainty</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_06/hands_on_ex_06.html">
+    <a class="dropdown-item" href="../../hands_on_ex/hands_on_ex_06/hands_on_ex_06.html" rel="" target="">
  <span class="dropdown-text">Exercise 6: Multivariate Analysis</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">In-Class Exercises</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercises">    
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_01/in_class_ex_01.html">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_01/in_class_ex_01.html" rel="" target="">
  <span class="dropdown-text">Exercise 1: Programming Elegant DataVis with ggplot2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_03/in_class_ex_03.html">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_03/in_class_ex_03.html" rel="" target="">
  <span class="dropdown-text">Exercise 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_04/in_class_ex_04.html">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_04/in_class_ex_04.html" rel="" target="">
  <span class="dropdown-text">Exercise 4: Visualising Normal Distribution</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_05/in_class_ex_05.html">
+    <a class="dropdown-item" href="../../in_class_ex/in_class_ex_05/in_class_ex_05.html" rel="" target="">
  <span class="dropdown-text">Exercise 5: Visualising Graph Data</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Take-Home Exercises</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercises">    
         <li>
-    <a class="dropdown-item" href="../../take_home_ex/take_home_ex_01/take_home_ex_01.html">
+    <a class="dropdown-item" href="../../take_home_ex/take_home_ex_01/take_home_ex_01.html" rel="" target="">
  <span class="dropdown-text">Exercise 1: City of Engagement</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../take_home_ex/take_home_ex_02/take_home_ex_02.html">
+    <a class="dropdown-item" href="../../take_home_ex/take_home_ex_02/take_home_ex_02.html" rel="" target="">
  <span class="dropdown-text">Exercise 2: VAST Challenge 2023, Mini-Challenge 2</span></a>
   </li>  
     </ul>
@@ -212,15 +184,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -234,63 +207,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-brief" id="toc-the-brief" class="nav-link active" data-scroll-target="#the-brief"><span class="toc-section-number">1</span>  The Brief</a>
+  <li><a href="#the-brief" id="toc-the-brief" class="nav-link active" data-scroll-target="#the-brief"><span class="header-section-number">1</span> The Brief</a>
   <ul class="collapse">
-  <li><a href="#setting-the-scene" id="toc-setting-the-scene" class="nav-link" data-scroll-target="#setting-the-scene"><span class="toc-section-number">1.1</span>  Setting the Scene</a></li>
-  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task"><span class="toc-section-number">1.2</span>  The Task</a></li>
+  <li><a href="#setting-the-scene" id="toc-setting-the-scene" class="nav-link" data-scroll-target="#setting-the-scene"><span class="header-section-number">1.1</span> Setting the Scene</a></li>
+  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task"><span class="header-section-number">1.2</span> The Task</a></li>
   </ul></li>
-  <li><a href="#libraries-and-packages" id="toc-libraries-and-packages" class="nav-link" data-scroll-target="#libraries-and-packages"><span class="toc-section-number">2</span>  Libraries and Packages</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="toc-section-number">3</span>  Data Preparation</a>
+  <li><a href="#libraries-and-packages" id="toc-libraries-and-packages" class="nav-link" data-scroll-target="#libraries-and-packages"><span class="header-section-number">2</span> Libraries and Packages</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">3</span> Data Preparation</a>
   <ul class="collapse">
-  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview"><span class="toc-section-number">3.1</span>  Data Overview</a>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview"><span class="header-section-number">3.1</span> Data Overview</a>
   <ul class="collapse">
-  <li><a href="#node-attributes" id="toc-node-attributes" class="nav-link" data-scroll-target="#node-attributes"><span class="toc-section-number">3.1.1</span>  Node Attributes</a></li>
-  <li><a href="#edge-attributes" id="toc-edge-attributes" class="nav-link" data-scroll-target="#edge-attributes"><span class="toc-section-number">3.1.2</span>  Edge Attributes</a></li>
+  <li><a href="#node-attributes" id="toc-node-attributes" class="nav-link" data-scroll-target="#node-attributes"><span class="header-section-number">3.1.1</span> Node Attributes</a></li>
+  <li><a href="#edge-attributes" id="toc-edge-attributes" class="nav-link" data-scroll-target="#edge-attributes"><span class="header-section-number">3.1.2</span> Edge Attributes</a></li>
   </ul></li>
-  <li><a href="#data-cleaning-conversion-to-graph" id="toc-data-cleaning-conversion-to-graph" class="nav-link" data-scroll-target="#data-cleaning-conversion-to-graph"><span class="toc-section-number">3.2</span>  Data Cleaning &amp; Conversion to Graph</a>
+  <li><a href="#data-cleaning-conversion-to-graph" id="toc-data-cleaning-conversion-to-graph" class="nav-link" data-scroll-target="#data-cleaning-conversion-to-graph"><span class="header-section-number">3.2</span> Data Cleaning &amp; Conversion to Graph</a>
   <ul class="collapse">
-  <li><a href="#main-graph" id="toc-main-graph" class="nav-link" data-scroll-target="#main-graph"><span class="toc-section-number">3.2.1</span>  Main Graph</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis"><span class="toc-section-number">4</span>  Exploratory Data Analysis</a>
-  <ul class="collapse">
-  <li><a href="#entities" id="toc-entities" class="nav-link" data-scroll-target="#entities"><span class="toc-section-number">4.1</span>  Entities</a>
-  <ul class="collapse">
-  <li><a href="#companies" id="toc-companies" class="nav-link" data-scroll-target="#companies"><span class="toc-section-number">4.1.1</span>  Companies</a></li>
-  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="toc-section-number">4.1.2</span>  Countries</a></li>
-  </ul></li>
-  <li><a href="#shipments" id="toc-shipments" class="nav-link" data-scroll-target="#shipments"><span class="toc-section-number">4.2</span>  Shipments</a>
-  <ul class="collapse">
-  <li><a href="#number-of-shipments-over-time" id="toc-number-of-shipments-over-time" class="nav-link" data-scroll-target="#number-of-shipments-over-time"><span class="toc-section-number">4.2.1</span>  Number of shipments over time</a></li>
-  <li><a href="#total-value-of-shipments-over-time" id="toc-total-value-of-shipments-over-time" class="nav-link" data-scroll-target="#total-value-of-shipments-over-time"><span class="toc-section-number">4.2.2</span>  Total value of shipments over time</a></li>
-  <li><a href="#relationship-between-shipment-value-and-size" id="toc-relationship-between-shipment-value-and-size" class="nav-link" data-scroll-target="#relationship-between-shipment-value-and-size"><span class="toc-section-number">4.2.3</span>  Relationship between shipment value and size</a></li>
-  <li><a href="#aggregating-edges" id="toc-aggregating-edges" class="nav-link" data-scroll-target="#aggregating-edges"><span class="toc-section-number">4.2.4</span>  Aggregating Edges</a></li>
-  </ul></li>
-  <li><a href="#build-graph" id="toc-build-graph" class="nav-link" data-scroll-target="#build-graph"><span class="toc-section-number">4.3</span>  Build Graph</a></li>
-  </ul></li>
-  <li><a href="#network-analysis" id="toc-network-analysis" class="nav-link" data-scroll-target="#network-analysis"><span class="toc-section-number">5</span>  Network Analysis</a>
-  <ul class="collapse">
-  <li><a href="#centrality" id="toc-centrality" class="nav-link" data-scroll-target="#centrality"><span class="toc-section-number">5.1</span>  Centrality</a>
-  <ul class="collapse">
-  <li><a href="#top-companies-by-different-centrality-measures" id="toc-top-companies-by-different-centrality-measures" class="nav-link" data-scroll-target="#top-companies-by-different-centrality-measures"><span class="toc-section-number">5.1.1</span>  Top companies by different centrality measures</a></li>
+  <li><a href="#main-graph" id="toc-main-graph" class="nav-link" data-scroll-target="#main-graph"><span class="header-section-number">3.2.1</span> Main Graph</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#temporal-analysis" id="toc-temporal-analysis" class="nav-link" data-scroll-target="#temporal-analysis"><span class="toc-section-number">6</span>  Temporal Analysis</a>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis"><span class="header-section-number">4</span> Exploratory Data Analysis</a>
   <ul class="collapse">
-  <li><a href="#operating-timelines-of-source-companies" id="toc-operating-timelines-of-source-companies" class="nav-link" data-scroll-target="#operating-timelines-of-source-companies"><span class="toc-section-number">6.1</span>  Operating Timelines of Source Companies</a></li>
-  <li><a href="#day-of-week-activity" id="toc-day-of-week-activity" class="nav-link" data-scroll-target="#day-of-week-activity"><span class="toc-section-number">6.2</span>  Day-of-Week Activity</a></li>
-  <li><a href="#high-centrality-nodes" id="toc-high-centrality-nodes" class="nav-link" data-scroll-target="#high-centrality-nodes"><span class="toc-section-number">6.3</span>  High-Centrality Nodes</a>
+  <li><a href="#entities" id="toc-entities" class="nav-link" data-scroll-target="#entities"><span class="header-section-number">4.1</span> Entities</a>
   <ul class="collapse">
-  <li><a href="#high-betweenness" id="toc-high-betweenness" class="nav-link" data-scroll-target="#high-betweenness"><span class="toc-section-number">6.3.1</span>  High Betweenness</a></li>
-  <li><a href="#high-in-degree" id="toc-high-in-degree" class="nav-link" data-scroll-target="#high-in-degree"><span class="toc-section-number">6.3.2</span>  High In-Degree</a></li>
-  <li><a href="#high-out-degree" id="toc-high-out-degree" class="nav-link" data-scroll-target="#high-out-degree"><span class="toc-section-number">6.3.3</span>  High Out-Degree</a></li>
-  <li><a href="#high-eigenvector-centrality" id="toc-high-eigenvector-centrality" class="nav-link" data-scroll-target="#high-eigenvector-centrality"><span class="toc-section-number">6.3.4</span>  High Eigenvector Centrality</a></li>
+  <li><a href="#companies" id="toc-companies" class="nav-link" data-scroll-target="#companies"><span class="header-section-number">4.1.1</span> Companies</a></li>
+  <li><a href="#countries" id="toc-countries" class="nav-link" data-scroll-target="#countries"><span class="header-section-number">4.1.2</span> Countries</a></li>
+  </ul></li>
+  <li><a href="#shipments" id="toc-shipments" class="nav-link" data-scroll-target="#shipments"><span class="header-section-number">4.2</span> Shipments</a>
+  <ul class="collapse">
+  <li><a href="#number-of-shipments-over-time" id="toc-number-of-shipments-over-time" class="nav-link" data-scroll-target="#number-of-shipments-over-time"><span class="header-section-number">4.2.1</span> Number of shipments over time</a></li>
+  <li><a href="#total-value-of-shipments-over-time" id="toc-total-value-of-shipments-over-time" class="nav-link" data-scroll-target="#total-value-of-shipments-over-time"><span class="header-section-number">4.2.2</span> Total value of shipments over time</a></li>
+  <li><a href="#relationship-between-shipment-value-and-size" id="toc-relationship-between-shipment-value-and-size" class="nav-link" data-scroll-target="#relationship-between-shipment-value-and-size"><span class="header-section-number">4.2.3</span> Relationship between shipment value and size</a></li>
+  <li><a href="#aggregating-edges" id="toc-aggregating-edges" class="nav-link" data-scroll-target="#aggregating-edges"><span class="header-section-number">4.2.4</span> Aggregating Edges</a></li>
+  </ul></li>
+  <li><a href="#build-graph" id="toc-build-graph" class="nav-link" data-scroll-target="#build-graph"><span class="header-section-number">4.3</span> Build Graph</a></li>
+  </ul></li>
+  <li><a href="#network-analysis" id="toc-network-analysis" class="nav-link" data-scroll-target="#network-analysis"><span class="header-section-number">5</span> Network Analysis</a>
+  <ul class="collapse">
+  <li><a href="#centrality" id="toc-centrality" class="nav-link" data-scroll-target="#centrality"><span class="header-section-number">5.1</span> Centrality</a>
+  <ul class="collapse">
+  <li><a href="#top-companies-by-different-centrality-measures" id="toc-top-companies-by-different-centrality-measures" class="nav-link" data-scroll-target="#top-companies-by-different-centrality-measures"><span class="header-section-number">5.1.1</span> Top companies by different centrality measures</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#other-explorations" id="toc-other-explorations" class="nav-link" data-scroll-target="#other-explorations"><span class="toc-section-number">7</span>  Other Explorations</a>
+  <li><a href="#temporal-analysis" id="toc-temporal-analysis" class="nav-link" data-scroll-target="#temporal-analysis"><span class="header-section-number">6</span> Temporal Analysis</a>
   <ul class="collapse">
-  <li><a href="#ego-networks" id="toc-ego-networks" class="nav-link" data-scroll-target="#ego-networks"><span class="toc-section-number">7.1</span>  Ego Networks</a></li>
-  <li><a href="#shipments-among-high-centrality-nodes" id="toc-shipments-among-high-centrality-nodes" class="nav-link" data-scroll-target="#shipments-among-high-centrality-nodes"><span class="toc-section-number">7.2</span>  Shipments among high centrality nodes</a></li>
+  <li><a href="#operating-timelines-of-source-companies" id="toc-operating-timelines-of-source-companies" class="nav-link" data-scroll-target="#operating-timelines-of-source-companies"><span class="header-section-number">6.1</span> Operating Timelines of Source Companies</a></li>
+  <li><a href="#day-of-week-activity" id="toc-day-of-week-activity" class="nav-link" data-scroll-target="#day-of-week-activity"><span class="header-section-number">6.2</span> Day-of-Week Activity</a></li>
+  <li><a href="#high-centrality-nodes" id="toc-high-centrality-nodes" class="nav-link" data-scroll-target="#high-centrality-nodes"><span class="header-section-number">6.3</span> High-Centrality Nodes</a>
+  <ul class="collapse">
+  <li><a href="#high-betweenness" id="toc-high-betweenness" class="nav-link" data-scroll-target="#high-betweenness"><span class="header-section-number">6.3.1</span> High Betweenness</a></li>
+  <li><a href="#high-in-degree" id="toc-high-in-degree" class="nav-link" data-scroll-target="#high-in-degree"><span class="header-section-number">6.3.2</span> High In-Degree</a></li>
+  <li><a href="#high-out-degree" id="toc-high-out-degree" class="nav-link" data-scroll-target="#high-out-degree"><span class="header-section-number">6.3.3</span> High Out-Degree</a></li>
+  <li><a href="#high-eigenvector-centrality" id="toc-high-eigenvector-centrality" class="nav-link" data-scroll-target="#high-eigenvector-centrality"><span class="header-section-number">6.3.4</span> High Eigenvector Centrality</a></li>
+  <li><a href="#day-of-week-comparison-between-high-centrality-nodes" id="toc-day-of-week-comparison-between-high-centrality-nodes" class="nav-link" data-scroll-target="#day-of-week-comparison-between-high-centrality-nodes"><span class="header-section-number">6.3.5</span> Day-of-Week Comparison Between High-Centrality Nodes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#other-explorations" id="toc-other-explorations" class="nav-link" data-scroll-target="#other-explorations"><span class="header-section-number">7</span> Other Explorations</a>
+  <ul class="collapse">
+  <li><a href="#ego-networks" id="toc-ego-networks" class="nav-link" data-scroll-target="#ego-networks"><span class="header-section-number">7.1</span> Ego Networks</a></li>
+  <li><a href="#shipments-among-high-centrality-nodes" id="toc-shipments-among-high-centrality-nodes" class="nav-link" data-scroll-target="#shipments-among-high-centrality-nodes"><span class="header-section-number">7.2</span> Shipments among high centrality nodes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -324,7 +298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 4, 2023</p>
+      <p class="date-modified">June 5, 2023</p>
     </div>
   </div>
     
@@ -1227,6 +1201,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+<section id="day-of-week-comparison-between-high-centrality-nodes" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="day-of-week-comparison-between-high-centrality-nodes"><span class="header-section-number">6.3.5</span> Day-of-Week Comparison Between High-Centrality Nodes</h3>
+<p>This heatmap shows the number of shipments sent and received by high-centrality nodes (on any measure) broken down by days of the week. It distinctly shows that for about 3/4 of the companies, they primarily send or receive but not both. For the remaining companies though, they send and receive roughly the same number of shipments throughout a week.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>top_ids <span class="ot">&lt;-</span> top_centralities <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(id) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>send_weekdays <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(arrivaldate, <span class="at">week_start =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(source <span class="sc">%in%</span> top_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(source, weekday) <span class="sc">%&gt;%</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">tolower</span>(source)), weekday) <span class="sc">%&gt;%</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shipment_type =</span> <span class="st">'send'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">company =</span> source)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>receive_weekdays <span class="ot">&lt;-</span> MC2_edges <span class="sc">%&gt;%</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weekday =</span> <span class="fu">wday</span>(arrivaldate, <span class="at">week_start =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(target <span class="sc">%in%</span> top_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(target, weekday) <span class="sc">%&gt;%</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">tolower</span>(target)), weekday) <span class="sc">%&gt;%</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shipment_type =</span> <span class="st">'receive'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">company =</span> target)</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>send_receive_weekdays <span class="ot">&lt;-</span> <span class="fu">union</span>(send_weekdays, receive_weekdays) <span class="sc">%&gt;%</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(shipment_type, as.factor))</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(send_receive_weekdays,</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>weekday, </span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">y=</span><span class="fu">fct_inorder</span>(company),</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill=</span>n)) <span class="sc">+</span></span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a><span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_discrete</span>(<span class="at">position =</span> <span class="st">'top'</span>) <span class="sc">+</span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_gradient</span>(<span class="at">name =</span> <span class="st">"# of shipments"</span>,</span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>                  <span class="at">low =</span> <span class="st">"light blue"</span>,</span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>                  <span class="at">high =</span> <span class="st">"dark blue"</span>) <span class="sc">+</span></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>),</span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Shipments Sent/Received by High Centrality Nodes per Day of Week"</span>,</span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>     <span class="at">subtitle =</span> <span class="st">"Note: Day of week may not be true value due to use of fictitious dates, but relative order should be correct."</span>,</span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"Day of Week"</span>,</span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Company"</span>) <span class="sc">+</span></span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">fct_rev</span>(shipment_type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="1440"></p>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="other-explorations" class="level1" data-number="7">
@@ -1236,24 +1268,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">convert</span>(to_local_neighborhood,</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">node =</span> <span class="fu">which</span>(<span class="fu">.N</span>()<span class="sc">$</span>id <span class="sc">==</span> <span class="st">'Selous Game Reserve  S.A. de C.V.'</span>),</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">order =</span> <span class="dv">1</span>,</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mode =</span> <span class="st">'all'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">color =</span> <span class="fu">ifelse</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id, <span class="st">'high centrality'</span>, <span class="st">'others'</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'fr'</span>) <span class="sc">+</span></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count, <span class="at">alpha=</span>..index..),</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size=</span><span class="dv">5</span>, <span class="at">color=</span>color)) <span class="sc">+</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">convert</span>(to_local_neighborhood,</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">node =</span> <span class="fu">which</span>(<span class="fu">.N</span>()<span class="sc">$</span>id <span class="sc">==</span> <span class="st">'Selous Game Reserve  S.A. de C.V.'</span>),</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">order =</span> <span class="dv">1</span>,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mode =</span> <span class="st">'all'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">color =</span> <span class="fu">ifelse</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id, <span class="st">'high centrality'</span>, <span class="st">'others'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'fr'</span>) <span class="sc">+</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count, <span class="at">alpha=</span>..index..),</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>                 ) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_alpha</span>(<span class="st">'Edge direction'</span>, <span class="at">guide =</span> <span class="st">'edge_direction'</span>) <span class="sc">+</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size=</span><span class="dv">5</span>, <span class="at">color=</span>color)) <span class="sc">+</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1262,18 +1294,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Show Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id) <span class="sc">%&gt;%</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count),</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">'lightblue'</span>) <span class="sc">+</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>MC2_graph_agg <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> top_centralities<span class="sc">$</span>id) <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout=</span><span class="st">'stress'</span>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>shipment_count),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">color=</span><span class="st">'lightblue'</span>) <span class="sc">+</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<p><img src="take_home_ex_02_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -1309,9 +1341,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1376,6 +1422,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
