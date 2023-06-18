@@ -63,7 +63,7 @@ According to the provided data dictionary, the main graph has **34,552 nodes** a
 ### Node Attributes
 
 | Attribute    | Data Type (assumed) | Description                                                    |
-|-----------------|-----------------|---------------------------------------|
+|------------------|------------------|-------------------------------------|
 | `id`         | char                | Name of the company that originated (or received) the shipment |
 | `shpcountry` | char                | Country the company most often associated with when shipping   |
 | `rcvcountry` | char                | Country the company most often associated with when receiving  |
@@ -72,7 +72,7 @@ According to the provided data dictionary, the main graph has **34,552 nodes** a
 ### Edge Attributes
 
 | Attribute          | Data Type (assumed) | Description                                                                                                                                                                                                                                                              |
-|-------------|-------------|----------------------------------------------|
+|---------------|---------------|------------------------------------------|
 | `arrivaldate`      | date                | Date the shipment arrived at port in YYYY-MM-DD format                                                                                                                                                                                                                   |
 | `hscode`           | char                | Harmonized System code for the shipment. Can be joined with the `hscodes` table to get additional details                                                                                                                                                                |
 | `valueofgoods_omu` | integer             | Customs-declared value of the total shipment, in Oceanus Monetary Units OMU                                                                                                                                                                                              |
@@ -594,6 +594,7 @@ shipment_receive <- MC2_edges %>%
 
 shipment_all <- union(shipment_send, shipment_receive)
 ```
+
 ### High Betweenness
 
 We can see something interesting with the nodes having the top 5 betweenness centrality. They all consistently send and receive shipments throughout the months, so may be playing roles as **forwarders** or **transshipment providers**. The differences between number of shipments sent and received are fairly big. Two of them receive a lot more shipments than they send, while the third is the opposite.

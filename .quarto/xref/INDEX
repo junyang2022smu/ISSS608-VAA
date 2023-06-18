@@ -43,5 +43,17 @@
   },
   "take_home_ex/take_home_ex_03/take_home_ex_03.qmd": {
     "take_home_ex_03.html": "850cefc3"
+  },
+  "hands_on_ex/hands_on_ex_08/hands_on_ex_08.qmd": {
+    "hands_on_ex_08.html": "603c97ed"
+  },
+  "hands_on_ex/hands_on_ex_08/data/geospatial/MPSZ-2019.qmd": {
+    "MPSZ-2019.html": "065ffaf0"
+  },
+  "in_class_ex/in_class_ex_09/data/geospatial/MPSZ-2019.qmd": {
+    "MPSZ-2019.html": "02ab0a30"
+  },
+  "in_class_ex/in_class_ex_09/in_class_ex_09.qmd": {
+    "in_class_ex_09.html": "73eea2fd"
   }
 }

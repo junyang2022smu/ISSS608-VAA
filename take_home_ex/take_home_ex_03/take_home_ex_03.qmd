@@ -1,0 +1,772 @@
+---
+title: "Take-Home Exercise 3: VAST Challenge 2023, Mini-Challenge 3"
+author: "Yang Jun"
+date: 5 Jun 2023
+date-modified: "`r Sys.Date()`"
+execute:
+  echo: true
+  eval: true
+  warning: false
+number-sections: true
+format:
+  html:
+    code-fold: true
+    code-summary: "Show Code"
+---
+
+This take-home exercise is based on [VAST Challenge 2023's Mini-Challenge 3](https://vast-challenge.github.io/2023/MC3.html).
+
+# The Brief
+
+## Setting the Scene
+
+*The following text is lifted from the Challenge webpage. Emphases are my own.*
+
+FishEye International, a non-profit focused on countering illegal, unreported, and unregulated (IUU) fishing, has been given access to an international finance corporation's database on fishing related companies. In the past, FishEye has determined that companies with **anomalous structures** are far more likely to be involved in IUU (or other "fishy" business). FishEye has transformed the database into a knowledge graph. It includes information about companies, owners, workers, and financial status. FishEye is aiming to use this graph to **identify anomalies** that could indicate a company is involved in IUU.
+
+FishEye analysts have attempted to use traditional node-link visualizations and standard graph analyses, but these were found to be ineffective because the **scale and detail in the data** can obscure a business's true structure. Can you help FishEye develop a **new visual analytics approach** to better understand fishing business anomalies?
+
+## The Task
+
+Use visual analytics to understand **patterns of groups** in the knowledge graph and **highlight anomalous groups**.
+
+1.  Use visual analytics to **identify anomalies in the business groups** present in the knowledge graph.
+
+2.  Develop a **visual analytics process** to **find similar businesses and group them**. This analysis should focus on a business's most important features and present those features clearly to the user.
+
+3.  Measure **similarity of businesses that you group** in the previous question. Express confidence in your groupings visually.
+
+4.  Based on your visualizations, provide evidence for or against the case that anomalous companies are involved in illegal fishing. Which business groups should FishEye investigate further?
+
+I will be attempting the second question:
+
+| Develop a **visual analytics process** to **find similar businesses and group them**. This analysis should focus on a business's most important features and present those features clearly to the user.
+
+# Libraries and Packages
+
+We will use common file/data manipulation packages, as well as graphing packages. In addition, we will use a couple of text mining packages.
+
+```{r}
+#| code-fold: false
+pacman::p_load(jsonlite, readxl, tidyverse, magrittr, janitor, knitr, # file and data manipulation
+               igraph, tidygraph, ggraph, ggdist, patchwork, GGally, visNetwork, graphlayouts, ggthemes, # graphing
+               tidytext, widyr, textstem # text processing
+               )
+```
+
+# Data Preparation
+
+## Data Overview
+
+According to the provided data dictionary, the main graph has **27,622 nodes** (representing either a company, beneficial owner or company contact), **24,038 undirected edges** and **7,794 connected components**. Each edge represents a relationship between a person and a company.
+
+### Node Attributes
+
+| Attribute          | Data Type (assumed) | Description                                                        |
+|----------------|----------------|-----------------------------------------|
+| `type`             | char                | Type of node (`Company`, `Beneficial Owner` or `Company Contacts`) |
+| `country`          | char                | Country associated with the entity                                 |
+| `product_services` | char                | Description of product services that the "id" node does            |
+| `revenue_omu`      | num                 | Operating revenue of the "id" node in Oceanus Monetary Units.      |
+
+### Edge Attributes
+
+| Attribute | Data Type (assumed) | Description                                             |
+|---------------|---------------|------------------------------------------|
+| `type`    | char                | Type of edge (`Beneficial Owner` or `Company Contacts`) |
+| `source`  | char                | ID of the source node                                   |
+| `target`  | char                | ID of the target node                                   |
+| `dataset` | char                | Always `MC3`                                            |
+
+## Initial Data Preparation
+
+Load the JSON file first:
+
+```{r}
+#| code-fold: false
+MC3 <- fromJSON('data/MC3.json')
+```
+
+We discover quite a few data quality issues with the file. Perform necessary cleaning. Some specific things:
+
+-   Remove duplicate nodes and edges.
+
+-   Some nodes without `product_services` entry became `character(0)` when cast to character, or are `Unknown`. Change these to NA.
+
+-   `revenue_omu` became a list of lists when converting from JSON to tibble format. Change it by casting to character, then to numeric.
+
+```{r}
+#| code-fold: false
+MC3_nodes <- as_tibble(MC3$nodes) %>%
+  distinct() %>%
+  mutate(across(c(id, country, product_services, type), as.character)) %>%
+  mutate(product_services = na_if(product_services, 'character(0)')) %>%
+  mutate(product_services = na_if(product_services, 'Unknown')) %>%
+  mutate(revenue_omu = as.numeric(as.character(revenue_omu))) %>%
+  relocate(id)
+
+MC3_edges <- as_tibble(MC3$links) %>%
+  distinct() %>%
+  mutate(across(c(source, target, type), as.character)) %>%
+  relocate(source, target)
+```
+
+### Vectors in edge source
+
+Examining `MC3_edges`, we notice that some source values are actually vectors, seemingly of repeated values:
+
+```{r}
+edge_source_vector_dup <- MC3_edges %>%
+  select(source) %>%
+  filter(grepl('^c\\(".+\\)', source))
+
+glimpse(edge_source_vector_dup)
+```
+
+For these entries, we will replace them with the first element of the vector:
+
+```{r}
+MC3_edges %<>%
+  mutate(source = str_replace(source, '\n', ' ')) %>%
+  mutate(source = str_replace(source, '^c\\("([^"]+)".+', '\\1'))
+```
+
+### Deduplication of nodes
+
+Next, there are 849 potential duplicate nodes, i.e. identical `id` and `type`, some with identical `country` and some with different `country`; some with known `product_service` and some unknown; and some with known `revenue_omu` and some unknown. This will pose problems when we wish to build the knowledge graph later.
+
+```{r}
+dup_nodes <- MC3_nodes %>%
+  count(id, type) %>%
+  filter(n>1) %>%
+  left_join(MC3_nodes,
+            by = join_by(id, type))
+
+dup_nodes
+```
+
+There's no perfect way to deduplicate these entries since we don't know how they came about. We may have to try several ways.
+
+First, let's tackle nodes that are not `Company` but only `Beneficial Owner` and/or `Company Contacts`:
+
+```{r}
+dup_noncoy_nodes <- MC3_nodes %>%
+  count(id, type) %>%
+  pivot_wider(names_from = type,
+              values_from = n,
+              values_fill = 0) %>%
+  filter( (`Beneficial Owner` + `Company Contacts` >= 2)
+          & `Company` == 0)
+
+dup_noncoy_nodes
+```
+
+Examining the ids, we see that these are likely to be companies rather than persons (names ending with Inc, Ltd, LLC, etc). We can just change their `type` to `Company`, since we do not have information on who company they are the beneficial owner or contact of; and if they do indeed play such roles within our knowledge graph, they will appear again in the `MC3_edges` table.
+
+```{r}
+dedup_nodes_noncoy <- MC3_nodes %>%
+  filter(id %in% dup_noncoy_nodes$id) %>%
+  mutate(type = 'Company')
+```
+
+Update MC3_nodes table:
+
+```{r}
+MC3_nodes_dedup <- MC3_nodes %>%
+  filter(! (id %in% dedup_nodes_noncoy$id)) %>%
+  bind_rows(dedup_nodes_noncoy)
+```
+
+Next, for duplicates of the same `type`, for now let's try concatenating the `country` and `product_service` fields, and take the maximum of `revenue_omu`.
+
+```{r}
+# get new nodes after previous change
+dup_nodes <- MC3_nodes_dedup %>%
+  count(id, type) %>%
+  filter(n>1) %>%
+  left_join(MC3_nodes_dedup,
+            by = join_by(id, type))
+
+dedup_nodes <- dup_nodes %>%
+  group_by(id, type) %>%
+  mutate(product_services = replace_na(product_services, '')) %>%
+  mutate(revenue_omu = replace_na(revenue_omu, 0)) %>%
+  summarise(country = paste(unique(country), collapse = ';'),
+            product_services = paste(unique(product_services), collapse = ';'),
+            revenue_omu = max(revenue_omu, na.rm = TRUE)) %>%
+  select(id, country, product_services, revenue_omu, type) %>%
+  mutate(product_services = na_if(product_services, '')) %>%
+  mutate(revenue_omu = na_if(revenue_omu, 0))
+
+MC3_nodes_dedup %<>%
+  filter(! (id %in% dedup_nodes$id)) %>%
+  bind_rows(dedup_nodes)
+```
+
+Finally, there are duplicate node entries due to some nodes being both a `Company` and a `Beneficial Owner` or `Company Contacts`. Let's identify which nodes these are. We can keep just the `Company` nodes and filter away others since the relationship (if there is one) is still captured in the `MC3_edges` table:
+
+```{r}
+dup_type_nodes <- MC3_nodes_dedup %>%
+  count(id, type) %>%
+  pivot_wider(names_from = type,
+              values_from = n,
+              values_fill = 0) %>%
+  filter( (`Beneficial Owner` > 0 | `Company Contacts` > 0)
+          & `Company` > 0)
+
+MC3_nodes_dedup %<>%
+  filter(! (id %in% dup_type_nodes$id & type != 'Company'))
+```
+
+Confirm that each `id` only appears once in `MC3_nodes_dedup`:
+
+```{r}
+MC3_nodes_dedup %>%
+  count(id) %>%
+  filter(n>1)
+```
+
+### Missing nodes
+
+It was discovered there are `source` and/or `target` in the `MC_edges` table that do not appear as `id` in the list of nodes. Let's filter out this list (from observation, `source` seems to be companies while `target` seems to be persons). We can see there are 7,181 missing companies and 21,265 missing persons:
+
+```{r}
+missing_nodes_company <- MC3_edges %>%
+  select(source) %>%
+  filter(! source %in% MC3_nodes_dedup$id) %>%
+  distinct()
+
+glimpse(missing_nodes_company)
+
+missing_nodes_person <- MC3_edges %>%
+  select(target) %>%
+  filter(! target %in% MC3_nodes_dedup$id) %>%
+  distinct()
+
+glimpse(missing_nodes_person)
+```
+
+On the other hand, these are nodes that appear in the nodes table but not the edges table:
+
+```{r}
+MC3_nodes_dedup %>%
+  filter(! id %in% MC3_edges$source) %>%
+  filter(! id %in% MC3_edges$target)
+```
+
+### NA Check
+
+Let's do a check for missing values. We note that only about 16% of nodes have `product_services` values, and 24% of nodes have `revenue_omu` values. Could this be because only companies tend to have values for these two fields?
+
+```{r}
+colMeans(is.na(MC3_nodes_dedup))
+```
+
+Indeed we filter by Company, we see that just less than half of companies have `product_services` values and 67% have `revenue_omu` values.
+
+```{r}
+colMeans(is.na(MC3_nodes_dedup %>% filter(type == 'Company')))
+```
+
+# Exploratory Data Analysis
+
+Let's visualise some basic stats on the nodes:
+
+## Node Type Distribution
+
+There are about 9,000 beneficial owners, 8,800 companies, and 5,000 company contacts:
+
+```{r}
+MC3_nodes_dedup %>%
+  ggplot(aes(y=fct_rev(fct_infreq(type)))) +
+  geom_bar() +
+  scale_x_continuous(name = 'Count', labels = scales::comma, breaks=seq(0,12000, by=2000), expand=expansion(mult = c(0,0.1))) +
+  scale_y_discrete(name = 'Node Type') +
+  theme_minimal() +
+  theme(axis.ticks.y=element_blank()) +
+  labs(title = "Number of Types of Each Node")
+```
+
+## Countries represented
+
+Most companies are associated with ZH, followed by Oceanus and Marebak: (Note: here we used the original MC3_nodes tibble as we combined country names in MC3_nodes_dedup.)
+
+```{r}
+#| fig.height: 10
+MC3_nodes %>%
+  filter(type == 'Company') %>%
+  ggplot(aes(y=fct_rev(fct_infreq(country)))) +
+  geom_bar() +
+  scale_x_continuous(name = 'No. of Companies', labels = scales::comma, position='top', limits=c(0,4000), expand=c(0,0)) +
+  scale_y_discrete(name = 'Country') +
+  theme(axis.ticks.y=element_blank()) +
+  labs(title = "Number of Companies Associated with Each Country",
+     subtitle = "Most companies are associated with ZH, followed by Oceanus") 
+```
+
+## Distribution of Revenue
+
+The boxplot of revenue shows that the median revenue is very low, probably less than 1 million. But there are quite a few outliers, that stretch all the way to more than 300 million:
+
+```{r}
+MC3_nodes %>%
+  filter(type == 'Company') %>%
+  ggplot(aes(x=revenue_omu)) +
+  geom_boxplot() +
+  # geom_density(bw=1e6) +
+  scale_x_continuous(name = 'Revenue (OMU)', labels = scales::label_comma(suffix = "M", scale=1e-6)) +
+  theme(axis.ticks.y=element_blank(),
+        axis.text.y=element_blank(),) +
+  labs(title = "Distribution of Company Revenues")
+```
+
+When we limit our view to revenues less than 1 million, we can see the distribution near the median more clearly:
+
+```{r}
+MC3_nodes %>%
+  filter(type == 'Company') %>%
+  ggplot(aes(x=revenue_omu)) +
+  geom_boxplot() +
+  scale_x_continuous(name = 'Revenue (OMU)', labels = scales::label_comma(suffix = "M", scale=1e-6), limits = c(0,1e6)) +
+  theme(axis.ticks.y=element_blank(),
+        axis.text.y=element_blank(),) +
+  labs(title = "Distribution of Company Revenues (< 1 Million OMU)")
+```
+
+## Company Owners and Contacts
+
+### Number of owners and contacts per company
+
+Let's examine the distribution of number of owners and contacts per company:
+
+```{r}
+company_owner_contact_count <- MC3_edges %>%
+  count(source, type)
+```
+
+From the ECDF plot, we can see that the vast majority of companies have a small number of owners and/or contacts:
+
+```{r}
+company_owner_contact_count %>%
+  ggplot(aes(x=n)) +
+  stat_ecdf(aes(colour=type), geom='point', size=1) +
+  facet_wrap(~type, ncol = 1)
+```
+
+### Number of companies per owner/contact
+
+```{r}
+person_company_count <- MC3_edges %>%
+  count(target, type)
+```
+
+From the histogram plot, we can see that most owners and contacts are only associated with 1 company. However, a small number of owners or contacts are associated with up to 9 companies:
+
+```{r}
+person_company_count %>%
+  ggplot(aes(x=n)) +
+  geom_histogram(binwidth=1, color='darkcyan', fill='lightseagreen') +
+  scale_x_continuous(name = 'No. of Companies', n.breaks=10) +
+  scale_y_continuous(name = 'Count of Persons') +
+  facet_wrap(~type, ncol = 1) +
+  labs(title = "Distribution of number of companies associated with each person")
+```
+
+Since based on the data it is unusual for persons to be associated with more than 2 companies, we may wish to examine these persons and their associated companies in closer detail later.
+
+# Grouping Similar Businesses
+
+## Approach 1: Textual Similarity of Companies
+
+### Textual similarity of company descriptions
+
+Earlier we saw that close to half of companies have some sort of description of their business in the `product_services` column. We could use text mining techniques to compare the similarity of their descriptions. A straightforward method would be to compute the cosine similarity of pairs of companies. Here, we used the `pairwise_similarity()` method of the `widyr` library to do so:
+
+```{r}
+product_services_words <- MC3_nodes_dedup %>%
+  filter(type == 'Company' & !is.na(product_services)) %>%
+  unnest_tokens(word, product_services,
+                to_lower = TRUE,
+                strip_punct = TRUE) %>%
+  anti_join(stop_words, by = "word") %>%
+  mutate(word = lemmatize_words(word)) %>%
+  count(id, word) %>%
+  ungroup()
+
+company_desc_sim_cosine <- product_services_words %>%
+  pairwise_similarity(id, word, n) %>%
+  rename(source = item1, target = item2)
+```
+
+Let's examine the distribution of cosine similarity values using an ECDF plot. We can see that about half of these pairs of companies have a similarity score of less than 0.2. We are interested in pairs of companies with relatively high similarity scores, so we should narrow down our space accordingly.
+
+```{r}
+company_desc_sim_cosine %>%
+  ggplot(aes(x=similarity)) +
+  # geom_histogram(binwidth=0.05, boundary=0, color='white') +
+  stat_ecdf() +
+  scale_x_continuous(name='Cosine Similarity Score', n.breaks = 10) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(title = "Distribution of Cosine Similarity of Company Descriptions")
+```
+
+For a first attempt, let's consider only companies that have **at least 0.75 cosine similarity score** with at least one other company. We will graph these companies as a network:
+
+-   Each node will be a company, and each edge will represent cosine similarity. Edge weights will be the similarity scores.
+
+-   We will use a force-directed layout algorithm (Kamada-Kawai), so that companies with high similarity scores will be drawn closer together (note: since Kamada-Kawai interprets weights as distances, it will draw higher weight edges further apart. So we will need to invert the weights to have these nodes appear closer together instead).
+
+-   Since there is potentially an edge between every node in the graph (complete graph), we will visually de-emphasise the edges to reduce visual clutter. Recall we are interested in clusters/groups of similar companies, which will already be plotted close together.
+
+Filter the high similarity edges, get the nodes and build a tidygraph:
+
+```{r}
+company_desc_sim_edges <- company_desc_sim_cosine %>%
+  filter(similarity >= 0.75)
+
+company_desc_sim_nodes <- MC3_nodes_dedup %>%
+  filter(id %in% company_desc_sim_edges$source | id %in% company_desc_sim_edges$target)
+
+company_desc_sim_graph <- tbl_graph(nodes = company_desc_sim_nodes,
+                                    edges = company_desc_sim_edges,
+                                    directed = FALSE)
+```
+
+Now plot the graph (open image in new window to view at full size):
+
+```{r, fig.width=16, fig.height=9}
+company_desc_sim_graph %>%
+  ggraph(layout='kk', weights = 1/similarity) +
+  geom_edge_link(edge_width=0.5, color='gray90') +
+  geom_node_point(size=2, shape=21, color='white', fill='darkcyan') +
+  theme_graph() +
+  labs(title = "Similarity of Company Descriptions",
+       subtitle = "The more similar the description, the closer the companies are drawn together")
+
+```
+
+#### Colouring fishing-related companies
+
+Since we are ultimately interested in fishing-related companies, let's analyse the company descriptions a bit further to identify keywords associated with fishing. First, identify the unique words and their count:
+
+```{r}
+product_services_word_count <- product_services_words %>%
+  count(word) %>%
+  arrange(desc(n))
+
+DT::datatable(product_services_word_count)
+```
+
+From the list, we can start picking out fishing-related keywords from the top 100 common words:
+
+```{r}
+fish_words = c(
+  'fish',
+  'seafood',
+  'salmon',
+  'shellfish',
+  'tuna',
+  'shrimp',
+  'seafoods',
+  'cod',
+  'squid',
+  'crabs',
+  'crab',
+  'oysters',
+  'lobster'
+)
+```
+
+Now let's add a new column to the edges table to indicate if the description includes fishing-related words:
+
+```{r}
+company_desc_sim_graph %<>%
+  activate(nodes) %>%
+  mutate(fishy = grepl(paste0(fish_words, collapse='|'), product_services, ignore.case = TRUE))
+```
+
+Finally, colour fishing-related nodes. Let's also try changing the size of each node to reflect its revenue (for companies with missing revenue values, we assume a nominal revenue value so that they will not be excluded from the graph):
+
+```{r, fig.width=16, fig.height=9}
+company_desc_sim_graph %>%
+  mutate(revenue_omu = replace_na(revenue_omu,1e3)) %>%
+  ggraph(layout='kk', weights = 1/similarity) +
+  geom_edge_link(edge_width=0.5, color='grey90') +
+  # scale_edge_width(range = c(0.5,5)) +
+  geom_node_point(shape=21, color='grey90', aes(size=revenue_omu, fill=fishy)) +
+  theme_graph() +
+  scale_size_continuous(name = "Revenue (OMU)",
+                        range=c(2,5),
+                        labels = scales::comma) +
+  scale_fill_manual(name = "Fishing-Related", 
+                    breaks = c(TRUE, FALSE),
+                    labels = c('Yes','No'),
+                    values = c('darkcyan', 'paleturquoise')) +
+  labs(title = "Similarity of Company Descriptions",
+       subtitle = "The more similar the description, the closer the companies are drawn together")
+```
+
+#### Interactive version
+
+Here we use visNetwork to generate an interactive version of the same graph above. Here, fishing-related nodes are coloured in dark cyan, while non-fishing-related nodes are coloured in light cyan. We also use node size to indicate its revenue. When you hover over a node, the node's name, description and revenue is shown in a popup label:
+
+```{r}
+edges_df <- company_desc_sim_graph %>%
+  activate(edges) %>%
+  as_tibble() %>%
+  mutate(weight = 1/similarity)
+
+
+nodes_df <- company_desc_sim_graph %>%
+  activate(nodes) %>%
+  as_tibble() %>%
+  mutate(title = paste0('<b>Name:</b> ', id, '<br><b>Country:</b> ', country, '<br><b>Desc:</b> ', product_services, '<br><b>Revenue:</b> ', revenue_omu)) %>%
+  mutate(id=row_number()) %>%
+  mutate(color.background = case_when(fishy ~ 'darkcyan', .default='paleturquoise')) %>%
+  mutate(value = replace_na(revenue_omu,1e3))
+
+visNetwork(nodes_df,
+           edges_df,
+           main = "Similarity of Company Descriptions",
+           submain = "The more similar the description, the closer the companies are drawn together") %>%
+  visIgraphLayout(layout = "layout_with_kk") %>%
+  visNodes(color = list(border = "turquoise"),
+           scaling = list(min=5,max=20),
+           borderWidth = 0.1) %>%
+  visEdges(arrows = NA,
+           hidden = FALSE,
+           width = 0.1,
+           color = '#eeeeee')
+```
+
+## Approach 2: Network Similarity
+
+### Company similarity by common ownership or contacts
+
+The second approach is to model the relationship between companies based on the network of owners and contacts. Let us define the nodes and edges as follows:
+
+-   Node: a company
+
+-   Edge: An edge exists between two companies if they share at least one owner or contact. The weight of the edge is the number of owners or contacts.
+
+#### Generate network graph
+
+Let us examine the number of unique companies, and persons, in MC3_edges. We see there are 12,797 unique companies, and 21,265 unique persons:
+
+```{r}
+MC3_edges %>%
+  sapply(function(x) n_distinct(x))
+```
+
+Generate the links between companies:
+
+```{r}
+company_links <- MC3_edges %>%
+  left_join(MC3_edges, by = join_by(target, type)) %>%
+  filter(source.x != source.y) %>%
+  rename(linked_person = target,
+         source = source.x,
+         target = source.y) %>%
+  select(source, target, linked_person, type) %>%
+
+  # Optional: remove duplicate edges (source-target and target-source are considered the same since this is an undirected graph)
+  rowwise() %>%
+  mutate(source_target_ordered = paste(sort(c(source, target)), collapse = " - ")) %>%
+  ungroup() %>%
+  group_by(source_target_ordered, type) %>%
+  slice_sample(n=1) %>%
+  ungroup() %>%
+  select(!source_target_ordered)
+```
+
+Generate the graph:
+
+```{r}
+company_nodes <- company_links %>%
+  select(source) %>%
+  rename(id = source) %>%
+  dplyr::union(company_links %>% 
+                 select(target) %>%
+                 rename(id = target)) %>%
+  left_join(MC3_nodes_dedup) %>%
+  mutate(fishy = grepl(paste0(fish_words, collapse='|'), product_services, ignore.case = TRUE))
+
+ 
+company_graph <- tbl_graph(nodes = company_nodes,
+                           edges = company_links,
+                           directed = FALSE)
+
+company_graph %<>%
+  mutate(group = group_components(),
+         betweenness_centrality = centrality_betweenness())
+```
+
+From the resulting graph, we can see that there are many clusters of close-knit nodes, some possibly cliques:
+
+```{r, fig.width=16,fig.height=9}
+company_graph %>%
+  mutate(revenue_omu = replace_na(revenue_omu,1e3)) %>%
+  ggraph(layout='stress') +
+  geom_edge_link(edge_width=0.5, aes(color=type)) +
+  geom_node_point(aes(size=revenue_omu, fill=fishy), 
+                  shape=21, 
+                  color='darkcyan', 
+                  ) +
+  scale_size_continuous(name = "Revenue (OMU)",
+                        range=c(2,5),
+                        labels = scales::comma) +
+  scale_fill_manual(name = "Fishing-Related Description", 
+                    breaks = c(TRUE, FALSE),
+                    labels = c('Yes','No'),
+                    values = c('darkcyan', 'paleturquoise')) +
+  scale_edge_color_manual(name = 'Related By',
+                            labels = c('Same Beneficial Owner', 'Same Contact'),
+                            values = c('orange', 'palegoldenrod')) +
+  theme_graph() +
+  labs(title = "Companies related by Common Ownership or Contacts")
+```
+
+#### Interactive version
+
+Again we use visNetwork to generate an interactive version of the graph above. Here, fishing-related nodes are coloured in dark cyan, while non-fishing-related nodes are coloured in light cyan. We also use node size to indicate its revenue. When you hover over a node, the node's name, description and revenue is shown in a popup label; when you hover over an edge, the person's name and relationship is shown:
+
+```{r}
+c_edges_df <- company_graph %>%
+  activate(edges) %>%
+  as_tibble() %>%
+  mutate(title = paste0('<b>Name:</b> ', linked_person, '<br><b>Type:</b> ', type)) %>%
+  mutate(color = case_when(type == 'Beneficial Owner' ~ 'orange', type == 'Company Contacts' ~ 'palegoldenrod'))
+
+c_nodes_df <- company_graph %>%
+  activate(nodes) %>%
+  as_tibble() %>%
+  mutate(title = paste0('<b>Name:</b> ', id, '<br><b>Country:</b> ', country, '<br><b>Desc:</b> ', product_services, '<br><b>Revenue:</b> ', revenue_omu)) %>%
+  mutate(id=row_number()) %>%
+  mutate(color.background = case_when(fishy ~ 'darkcyan', .default='paleturquoise')) %>%
+  mutate(value = replace_na(revenue_omu,1e3))
+
+visNetwork(c_nodes_df,
+           c_edges_df,
+           main = "Companies related by Common Ownership or Contacts") %>%
+  visIgraphLayout(layout = "layout_components") %>% # worked better: components, kk, 
+  visNodes(color = list(border = "turquoise"),
+           scaling = list(min=5,max=20),
+           borderWidth = 0.1) %>%
+  visEdges(arrows = NA,
+           hidden = FALSE,
+           width = 0.5,
+           color = '#eeeeee')
+```
+
+### Companies associated with 'suspicious' persons
+
+Earlier during EDA we found that most persons have only 1 company associated with them (i.e. owner or contact). Hence, persons associated with 2 or more companies, and the companies themselves, could be considered 'suspicious'. The drawback of the above graphing approach is that it did not allow us to easily see whether any given cluster had the same or different owners. Let's try to visualise the suspicious owners/contacts together with their associated companies.
+
+Let's first extract the list of 'suspicious' persons:
+
+```{r}
+suspicious_persons <- MC3_edges %>%
+  count(target) %>%
+  filter(n>1)
+
+```
+
+Then extract the suspicious edges, generate new node list, and create new graph:
+
+```{r}
+
+suspicious_links <- suspicious_persons %>%
+  left_join(MC3_edges) %>%
+  select(source, target, type)
+ 
+suspicious_nodes <- suspicious_links %>%
+  select(source) %>%
+  mutate(entity_type = 'Company') %>%
+  rename(id = source) %>%
+  dplyr::union(suspicious_links %>% 
+                 select(target) %>%
+                 mutate(entity_type = 'Person') %>%
+                 rename(id = target)) %>%
+  left_join(MC3_nodes_dedup) %>%
+  mutate(fishy = grepl(paste0(fish_words, collapse='|'), product_services, ignore.case = TRUE)) %>%
+  mutate(entity_type = case_when(entity_type == 'Company' & fishy ~ 'Company (fishing-related)',
+                                 entity_type == 'Company' & !fishy ~ 'Company (not fishing-related or unknown)',
+                                 .default = entity_type))
+
+suspicious_graph <- tbl_graph(nodes = suspicious_nodes,
+                              edges = suspicious_links,
+                              directed = FALSE)
+
+suspicious_graph %<>%
+  mutate(degree_centrality = centrality_degree())
+```
+
+Draw the graph:
+
+```{r, fig.width=20, fig.height=20}
+suspicious_graph %>%
+  mutate(revenue_omu = replace_na(revenue_omu,1e3)) %>%
+  ggraph(layout='stress') +
+  geom_edge_link(aes(color=type),
+                 edge_width=0.5) +
+  geom_node_point(aes(size=revenue_omu, fill=entity_type), 
+                  shape=21, 
+                  color='grey90', 
+                  ) +
+  scale_size_continuous(name = "Revenue (OMU)",
+                        range=c(2,5),
+                        labels = scales::comma) +
+  scale_fill_manual(name = "Entity Type",
+                    breaks = c('Person', 'Company (fishing-related)', 'Company (not fishing-related or unknown)'),
+                    values = c('tomato', 'darkcyan', 'mediumturquoise')) +
+  scale_edge_color_manual(name = 'Related By',
+                            labels = c('Same Beneficial Owner', 'Same Contact'),
+                            values = c('orange', 'palegoldenrod')) +
+  theme_graph() +
+  labs(title = "Persons associated with multiple companies")
+```
+
+#### Interactive version
+
+```{r}
+suspicious_edges_df <- suspicious_graph %>%
+  activate(edges) %>%
+  as_tibble() %>%
+  mutate(title = paste0('<b>Relationship Type:</b> ', type)) %>%
+  mutate(color = case_when(type == 'Beneficial Owner' ~ 'orange', type == 'Company Contacts' ~ 'palegoldenrod'))
+
+suspicious_nodes_df <- suspicious_graph %>%
+  activate(nodes) %>%
+  as_tibble() %>%
+  mutate(title = paste0('<b>Name:</b> ', id, '<br><b>Country:</b> ', country, '<br><b>Desc:</b> ', product_services, '<br><b>Revenue:</b> ', revenue_omu)) %>%
+  mutate(id=row_number()) %>%
+  mutate(color.background = case_when(entity_type == 'Person' ~ 'tomato',
+                                      entity_type == 'Company (fishing-related)' ~ 'darkcyan',
+                                      entity_type == 'Company (not fishing-related or unknown)' ~ 'mediumturquoise')) %>%
+  mutate(value = replace_na(revenue_omu,1e3))
+
+visNetwork(suspicious_nodes_df,
+           suspicious_edges_df,
+           main = "Persons associated with multiple companies") %>%
+  visIgraphLayout(layout = "layout_components") %>% # worked better: components, kk, 
+  visNodes(color = list(border = "lightgray"),
+           scaling = list(min=2,max=5),
+           borderWidth = 0.1) %>%
+  visEdges(arrows = NA,
+           hidden = FALSE,
+           width = 0.5,
+           color = '#eeeeee')
+```
+
+
+# Conclusion
+
+From the above visualisations, we have a couple of methods of identifying companies that are likely to be similar to each other. Each of these cluster of companies could be further investigated for anomalies.
+
+# Further Work
+
+With more time, these ways of grouping companies could be further explored:
+
+- Using network similarity (e.g. jaccard similarity, Adamic-Adar similarity) as edge weights
+
+- For the largest connected components, using community detection algorithms to further break them down into possible groups.
